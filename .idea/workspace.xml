@@ -7,7 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="076bf813-87cb-4ac9-a9e0-f93221fc88f6" name="Changes" comment="release">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/no4_291122_732842_24_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/no3_191022_732842_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no3_191022_732842.iml" beforeDir="false" afterPath="$PROJECT_DIR$/no4_291122_732842.24.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no3_191022_732842.uml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчет.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчет.pdf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +74,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="no3_191022_732842" type="Application" factoryName="Application">
+    <configuration name="no4_291122_732842.24" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Program" />
-      <module name="no3_191022_732842" />
+      <module name="no4_291122_732842.24" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -98,6 +106,8 @@
       <workItem from="1668880486536" duration="22934000" />
       <workItem from="1668907459989" duration="1348000" />
       <workItem from="1668908837999" duration="621000" />
+      <workItem from="1669731068518" duration="110000" />
+      <workItem from="1669731182592" duration="791000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1666217231948</created>
