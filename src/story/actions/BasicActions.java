@@ -1,6 +1,6 @@
-package story;
+package story.actions;
 
-public enum Actions {
+public enum BasicActions implements IActionable {
     EXIST("существует"),
     MATERIALIZE("материализуется"),
     FLYING("летит"),
@@ -8,11 +8,16 @@ public enum Actions {
     STAYING("располагается");
 
     private final String actionDescribe;
-    Actions(String actionDescribe) {
+    BasicActions(String actionDescribe) {
         this.actionDescribe = actionDescribe;
     }
-
+    @Deprecated
     public String getActionDescribe() {
+        return actionDescribe;
+    }
+
+    @Override
+    public String getAction() {
         return actionDescribe;
     }
 }

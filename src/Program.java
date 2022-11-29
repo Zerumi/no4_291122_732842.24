@@ -55,12 +55,16 @@
  */
 
 import entities.*;
+import entities.emotionMeanings.Meaning;
+import entities.emotionMeanings.UnknownMeaning;
 import entities.entityBuff.Buff;
 import entities.entityBuff.Stat;
 import places.Place;
 import places.singlePlaces.BigRowanTree;
+import places.singlePlaces.DinnerTable;
 import places.singlePlaces.Hower;
 import places.singlePlaces.Roof;
+import places.singlePlaces.interfaces.IDinnerTable;
 import places.superPlaces.isolatedPlaces.Hall;
 import places.superPlaces.isolatedPlaces.House;
 import places.superPlaces.isolatedPlaces.Lumber;
@@ -69,10 +73,13 @@ import places.superPlaces.openPlaces.Forest;
 import places.superPlaces.openPlaces.NearWater;
 import places.superPlaces.openPlaces.OpenPlace;
 import places.superPlaces.openPlaces.UnderCeiling;
-import story.Actions;
 import story.Event;
-import story.IActionable;
+import story.Story;
 import story.Time;
+import story.actions.Action;
+import story.actions.BasicActions;
+import story.actions.ICanActionable;
+import story.actions.PreparingDinnerTable;
 import things.ISmellable;
 import things.Rope;
 import things.Stick;
@@ -105,6 +112,42 @@ import things.unitions.Unition;
  */
 public class Program {
     public static void main(String[] args) {
+
+        // Миса издала звук, который мог означать что угодно.
+        Misa misa = new Misa("Миса");
+        Meaning meaning = new UnknownMeaning("какое-то означающее", "что угодно");
+        misa.noise(meaning);
+
+        // Потом они помолчали, наблюдая, как Муми-мама накрывает на стол к обеду. (прим ред. к ужину)
+        MumiFather father = new MumiFather("Муми-папа");
+        IDinnerTable dinnerTable = new DinnerTable("обеденный стол");
+        Action action = new PreparingDinnerTable(dinnerTable, father);
+        They they = new They("они");
+        they.lookFor(action.getEvent());
+        Story.FreezeStory();
+        action.invokeAction();
+
+        // Миса вспомнила чудесные локоны и вздохнула.
+        Buff buff = new Buff(Stat.EXHAUSTED, new Meaning("воспоминание", "воспоминание о чудесных локонах") {
+            @Override
+            public String getName() {
+                return super.getName();
+            }
+
+            @Override
+            public String getDescription() {
+                return super.getDescription();
+            }
+
+            @Override
+            public String getSource() {
+                return super.getSource();
+            }
+        });
+        misa.addBuff(buff);
+
+
+
         // Вечером острый запах цветущей рябины заполнил зал.
         Hall hall = new Hall("зал");
         ISmellable berry = new Rowan("рябина", "острый", true);
@@ -126,19 +169,19 @@ public class Program {
         miu.meet(ant);
 
         // Только теперь все заметили, что театр плыл уже в лесу.
-        IActionable theatre = new Theatre("театр");
+        ICanActionable theatre = new Theatre("театр");
         Place forest = new Forest("лес");
-        Event theatreSwimming = new Event(Actions.SWIMMING, theatre, forest);
-        All all = new All("все");
-        all.lockAttention(Time.ONLY_RIGHT_NOW, theatreSwimming);
-
-        // Все пришли в сильное волнение.
-        Entity.getWorried(all);
-
-        // Забыв свой страх перед Эммой, они сгрудились у самой воды, разговаривая и размахивая лапами.
+        Event theatreSwimming = new Event(BasicActions.SWIMMING, theatre, forest);
         Emma emma = new Emma("Эмма");
         Buff fear = new Buff(Stat.FEAR, emma);
-        They they = new They("они", forest, fear);
+        they.setLocation(forest);
+        they.addBuff(fear);
+        they.lockAttention(Time.ONLY_RIGHT_NOW, theatreSwimming);
+
+        // Все пришли в сильное волнение.
+        Entity.getWorried(they);
+
+        // Забыв свой страх перед Эммой, они сгрудились у самой воды, разговаривая и размахивая лапами.
         they.removeBuff(fear);
         Place nearWater = new NearWater("около воды");
         they.setLocation(nearWater);
@@ -152,7 +195,6 @@ public class Program {
         Unition u1 = they.attach(house, bigRowanTree);
 
         // Муми-папа прикрепил канат к своей палке, а палку воткнул прямо в крышу чулана.
-        MumiFather father = new MumiFather("Муми-папа");
         Rope rope = new Rope("канат");
         Stick stick = new Stick("палка");
         Unition u2 = father.attach(rope, stick);
@@ -160,6 +202,11 @@ public class Program {
         Roof roofOfLumber = new Roof("крыша чулана", lumber);
         father.stick(u2, roofOfLumber);
 
+
+
+
+
+        // End of story
         System.out.println();
 
         // Описание состояния всех объектов
@@ -175,7 +222,6 @@ public class Program {
         System.out.println("theatre:" + theatre);
         System.out.println("forest:" + forest);
         System.out.println("theatreSwimming:" + theatreSwimming);
-        System.out.println("all:" + all);
         System.out.println("emma:" + emma);
         System.out.println("fear:" + fear);
         System.out.println("they:" + they);

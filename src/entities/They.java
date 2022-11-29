@@ -7,7 +7,7 @@ import things.unitions.Unition;
 
 import java.util.Arrays;
 
-public class They extends Entity implements IAttachable {
+public class They extends Entity implements IAttachable, IWorriable {
 
     public They(String name) {
         super(name);
@@ -27,6 +27,10 @@ public class They extends Entity implements IAttachable {
         }
     }
 
+    public void worry()
+    {
+        System.out.println(this.getName() + " пришли в сильное волнение. ");
+    }
     public void huddle()
     {
         System.out.println(this.getName() + " сгрудились на месте: " + getLocation().getName() + ". ");

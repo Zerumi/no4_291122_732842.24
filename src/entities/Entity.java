@@ -5,13 +5,13 @@ import entities.entityBuff.ISourceable;
 import places.Place;
 import places.superPlaces.openPlaces.UnknownLocation;
 import story.Event;
-import story.IActionable;
+import story.actions.ICanActionable;
 import story.Time;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Entity implements IActionable, ISourceable {
+public abstract class Entity implements ICanActionable, ISourceable {
     private String name;
     private Place location;
     private ArrayList<Buff> bufflist;
@@ -61,6 +61,11 @@ public abstract class Entity implements IActionable, ISourceable {
         System.out.println(when.getName() + " " + this.getName() + " обратил внимание: " + onWhat.getEventDescribe() + ". ");
     }
 
+    public void lookFor(Event event)
+    {
+        System.out.println(this.getName() + " наблюдали за событием: " + event.getEventDescribe());
+    }
+
     public static void getWorried(IWorriable entity)
     {
         entity.worry();
@@ -78,11 +83,6 @@ public abstract class Entity implements IActionable, ISourceable {
 
     @Override
     public String getSource() {
-        return getName();
-    }
-
-    @Override
-    public String getDescribe() {
         return getName();
     }
 
