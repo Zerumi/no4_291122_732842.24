@@ -1,7 +1,9 @@
 package entities;
 
 import entities.entityBuff.Buff;
-import things.unitions.ICanAttachable;
+import entities.interfacesAnimateActions.IAttachable;
+import entities.interfacesAnimateActions.IWorriable;
+import things.unitions.ICanUniteable;
 import places.Place;
 import things.unitions.Unition;
 
@@ -48,17 +50,17 @@ public class They extends Entity implements IAttachable, IWorriable {
     }
 
     @Override
-    public void removeBuff(Buff e) {
-        System.out.println(this.getName() + " забыли " + e.getStat() + " (Источник: " + e.getSource() + ").");
-        super.removeBuff(e);
+    public void removeBuff(Buff buff) {
+        System.out.println(this.getName() + " забыли " + buff.getStat() + " (Источник: " + buff.getSource() + ").");
+        super.removeBuff(buff);
     }
 
     @Override
-    public Unition attach(ICanAttachable... things) {
+    public Unition attach(ICanUniteable... things) {
 
         Unition unition = new Unition(things);
 
-        System.out.println(this.getName() + " привязали между собой: " + Arrays.toString(Arrays.stream(things).map(ICanAttachable::getName).toArray()));
+        System.out.println(this.getName() + " привязали между собой: " + Arrays.toString(Arrays.stream(things).map(ICanUniteable::getName).toArray()));
 
         return unition;
     }

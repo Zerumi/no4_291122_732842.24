@@ -2,11 +2,14 @@ package entities;
 
 import entities.entityBuff.Buff;
 import entities.entityBuff.ISourceable;
+import entities.interfacesAnimateActions.IWorriable;
 import places.Place;
+import places.singlePlaces.SinglePlace;
 import places.superPlaces.openPlaces.UnknownLocation;
 import story.Event;
-import story.actions.ICanActionable;
 import story.Time;
+import story.actions.ICanActionable;
+import things.Thing;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -16,10 +19,13 @@ public abstract class Entity implements ICanActionable, ISourceable {
     private Place location;
     private ArrayList<Buff> bufflist;
 
+    private ArrayList<Thing> inventory;
+
     {
         name = "безымянный";
         location = new UnknownLocation("вне времени и пространства");
         bufflist = new ArrayList<>();
+        inventory = new ArrayList<>();
     }
 
     protected Entity(String name) {
@@ -35,6 +41,12 @@ public abstract class Entity implements ICanActionable, ISourceable {
     {
         this(name, location);
         this.bufflist = bufflist;
+    }
+
+    protected Entity(String name, Place location, ArrayList<Buff> bufflist, ArrayList<Thing> inventory)
+    {
+        this(name,location,bufflist);
+        this.inventory = inventory;
     }
 
     public String getName() {
@@ -63,7 +75,12 @@ public abstract class Entity implements ICanActionable, ISourceable {
 
     public void lookFor(Event event)
     {
-        System.out.println(this.getName() + " наблюдали за событием: " + event.getEventDescribe());
+        System.out.println(this.getName() + " наблюдал за событием: " + event.getEventDescribe() + ".");
+    }
+
+    public void lookOn(SinglePlace what)
+    {
+        System.out.println(this.getName() + " посмотрел на: " + what.getName() + ".");
     }
 
     public static void getWorried(IWorriable entity)
@@ -71,14 +88,29 @@ public abstract class Entity implements ICanActionable, ISourceable {
         entity.worry();
     }
 
-    public void addBuff(Buff e)
+    public void addBuff(Buff buff)
     {
-        bufflist.add(e);
+        System.out.println("Присвоена характеристика: " + buff.getStat() + " персонажу " + this.getName() + " (Источник: " + buff.getSource() + ")");
+        bufflist.add(buff);
     }
 
-    public void removeBuff(Buff e)
+    public void removeBuff(Buff buff)
     {
-        bufflist.remove(e);
+        bufflist.remove(buff);
+    }
+
+    public void addItemToInventory(Thing thing)
+    {
+        System.out.println("В инвентарь персонажа " + getName() + " добавлен предмет " + thing.getName());
+        inventory.add(thing);
+    }
+
+    public void removeItemFromInventory(Thing thing)
+    {
+        if (inventory.remove(thing))
+        {
+            System.out.println("Из инвентаря персонажа " + getName() + " пропал предмет " + thing.getName());
+        }
     }
 
     @Override

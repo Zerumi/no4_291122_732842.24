@@ -1,8 +1,8 @@
 package places.singlePlaces;
 
-import things.unitions.ICanAttachable;
+import things.unitions.ICanUniteable;
 
-public class BigRowanTree extends SinglePlace implements ICanAttachable {
+public class BigRowanTree extends SinglePlace implements ICanUniteable {
     public BigRowanTree(String name) {
         super(name);
     }

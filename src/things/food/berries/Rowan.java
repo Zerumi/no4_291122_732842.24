@@ -1,4 +1,4 @@
-package things.berries;
+package things.food.berries;
 
 public class Rowan extends Berry {
     public Rowan(String name, String smell)

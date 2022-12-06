@@ -1,7 +1,7 @@
-package things.berries;
+package things.food.berries;
 
-import things.ISmellable;
 import things.Thing;
+import things.food.ISmellable;
 
 import java.util.Objects;
 

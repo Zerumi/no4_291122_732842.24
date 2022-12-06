@@ -1,5 +1,5 @@
 package things.unitions;
 
-public interface ICanAttachable {
+public interface ICanUniteable {
     String getName();
 }

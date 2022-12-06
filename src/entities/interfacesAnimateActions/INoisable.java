@@ -1,4 +1,4 @@
-package entities;
+package entities.interfacesAnimateActions;
 
 import entities.emotionMeanings.Meaning;
 

@@ -6,5 +6,7 @@ public enum Stat {
     EXHAUSTED,
     FATIGUE,
     SAD,
-    WORRY
+    WORRY,
+    SHINING,
+    LAUGH
 }

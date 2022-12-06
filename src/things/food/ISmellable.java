@@ -1,4 +1,4 @@
-package things;
+package things.food;
 
 public interface ISmellable {
     String getSmell();

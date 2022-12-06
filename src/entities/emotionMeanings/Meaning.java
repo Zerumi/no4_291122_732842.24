@@ -2,11 +2,11 @@ package entities.emotionMeanings;
 
 import entities.entityBuff.ISourceable;
 
-public abstract class Meaning implements ISourceable {
+public class Meaning implements ISourceable {
     private String name;
     private String description;
 
-    protected Meaning(String name, String description)
+    public Meaning(String name, String description)
     {
         this.name = name;
         this.description = description;
@@ -24,6 +24,6 @@ public abstract class Meaning implements ISourceable {
     @Override
     public String getSource()
     {
-        return getName();
+        return getDescription();
     }
 }

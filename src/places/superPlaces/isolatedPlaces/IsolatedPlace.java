@@ -2,7 +2,7 @@ package places.superPlaces.isolatedPlaces;
 
 import places.superPlaces.SuperPlace;
 import story.Time;
-import things.ISmellable;
+import things.food.ISmellable;
 
 import java.util.Objects;
 

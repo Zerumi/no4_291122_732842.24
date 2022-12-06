@@ -2,9 +2,9 @@ package tests;
 
 import places.Place;
 import places.superPlaces.isolatedPlaces.Hall;
-import things.berries.Berry;
+import things.food.berries.Berry;
 import things.Rope;
-import things.berries.Rowan;
+import things.food.berries.Rowan;
 import things.Thing;
 
 public class ObjectMethodsTest {

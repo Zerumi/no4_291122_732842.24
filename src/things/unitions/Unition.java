@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Unition extends Thing {
-    private final ArrayList<ICanAttachable> uniteItems;
+    private final ArrayList<ICanUniteable> uniteItems;
 
     {
         uniteItems = new ArrayList<>();
     }
 
-    public Unition(ICanAttachable... things)
+    public Unition(ICanUniteable... things)
     {
         String name = "";
         for (int i = 0; i < things.length; i++) {

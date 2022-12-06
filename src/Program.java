@@ -60,32 +60,27 @@ import entities.emotionMeanings.UnknownMeaning;
 import entities.entityBuff.Buff;
 import entities.entityBuff.Stat;
 import places.Place;
-import places.singlePlaces.BigRowanTree;
-import places.singlePlaces.DinnerTable;
-import places.singlePlaces.Hower;
-import places.singlePlaces.Roof;
-import places.singlePlaces.interfaces.IDinnerTable;
+import places.singlePlaces.*;
+import places.superPlaces.SuperPlace;
 import places.superPlaces.isolatedPlaces.Hall;
 import places.superPlaces.isolatedPlaces.House;
 import places.superPlaces.isolatedPlaces.Lumber;
 import places.superPlaces.isolatedPlaces.Theatre;
-import places.superPlaces.openPlaces.Forest;
-import places.superPlaces.openPlaces.NearWater;
-import places.superPlaces.openPlaces.OpenPlace;
-import places.superPlaces.openPlaces.UnderCeiling;
+import places.superPlaces.openPlaces.*;
 import story.Event;
+import story.Size;
 import story.Story;
 import story.Time;
-import story.actions.Action;
-import story.actions.BasicActions;
-import story.actions.ICanActionable;
-import story.actions.PreparingDinnerTable;
-import things.ISmellable;
-import things.Rope;
-import things.Stick;
-import things.berries.Rowan;
-import things.unitions.ICanAttachable;
+import story.actions.*;
+import things.*;
+import things.food.Food;
+import things.food.ISmellable;
+import things.food.PreparedCereal;
+import things.food.berries.Rowan;
+import things.unitions.ICanUniteable;
 import things.unitions.Unition;
+
+import java.awt.*;
 
 
 // Согласованная объектная модель:
@@ -120,7 +115,7 @@ public class Program {
 
         // Потом они помолчали, наблюдая, как Муми-мама накрывает на стол к обеду. (прим ред. к ужину)
         MumiFather father = new MumiFather("Муми-папа");
-        IDinnerTable dinnerTable = new DinnerTable("обеденный стол");
+        DinnerTable dinnerTable = new DinnerTable("обеденный стол");
         Action action = new PreparingDinnerTable(dinnerTable, father);
         They they = new They("они");
         they.lookFor(action.getEvent());
@@ -128,28 +123,56 @@ public class Program {
         action.invokeAction();
 
         // Миса вспомнила чудесные локоны и вздохнула.
-        Buff buff = new Buff(Stat.EXHAUSTED, new Meaning("воспоминание", "воспоминание о чудесных локонах") {
-            @Override
-            public String getName() {
-                return super.getName();
-            }
-
-            @Override
-            public String getDescription() {
-                return super.getDescription();
-            }
-
-            @Override
-            public String getSource() {
-                return super.getSource();
-            }
-        });
+        Buff buff = new Buff(Stat.EXHAUSTED, new Meaning("воспоминание", "воспоминание о чудесных локонах"));
         misa.addBuff(buff);
+        misa.sigh();
 
+        // А за спиной Мисы и фрекен Снорк, среди пыльного хлама, за бумажной пальмой поблескивали внимательные и блестящие маленькие глазки.
+        SuperPlace middleOfDust = new MiddleOfDust("среди пыльного хлама");
+        SinglePlace paperPalma = new PaperPalma("за бумажной пальмой", middleOfDust);
+        FreakenSnork snork = new FreakenSnork("фрекен Снорк");
+        Homsa homsa = new Homsa("Хомса", paperPalma);
+        Thing sugarStorage = new SugarStorage("сахарница");
+        homsa.addItemToInventory(sugarStorage);
+        snork.setLocation(middleOfDust);
+        misa.setLocation(middleOfDust);
+        homsa.setEyesParams(Color.DARK_GRAY, Size.SMALL);
+        homsa.getHomsaEyes().shine();
 
+        // Глазки презрительно разглядывали Мису и фрекен Снорк, а потом, скользнув по гостиному гарнитуру, остановились на маме, которая раскладывала по тарелкам кашу.
+        Hall hall = new Hall("зал");
+        MumiMother mom = new MumiMother("Муми-мама", hall);
+        Food preparedCereal = new PreparedCereal("готовая каша");
+        Plate plate = new Plate("тарелка");
+        SinglePlace furnitureInHall = new Furniture("гостиный гарнитур", hall);
+        Meaning despite = new Meaning("презрение", "презрительное рассмотрение");
+        homsa.getHomsaEyes().examine(misa, despite);
+        homsa.getHomsaEyes().examine(snork, despite);
+        homsa.lookOn(furnitureInHall);
+        Action momLayOutPlates = new LayingOut<>(mom, preparedCereal, plate);
+        homsa.lookFor(momLayOutPlates.getEvent());
+
+        // Глазки еще больше потемнели, а мордочка насмешливо сморщилась.
+        Buff homsalaugh = new Buff(Stat.LAUGH, homsa);
+        homsa.getHomsaEyes().darker();
+        homsa.addBuff(homsalaugh);
+
+        // Взяв тарелку с кашей, она поставила ее на пол под пальму.
+        Unition plateWithCereal = new Unition(plate, preparedCereal);
+        Floor floor = new Floor("пол под пальмой", middleOfDust);
+        plateWithCereal.setLocation(mom, floor);
+
+        // Все бросились к столу и уселись вокруг.
+        they.setLocation(dinnerTable);
+
+        // Тут он осекся и выпустил из лап сахарницу, которая со звоном упала на пол.
+        homsa.removeItemFromInventory(sugarStorage);
+        ((IDestroyable)sugarStorage).destroy(); // add reason?
+
+        // Все обернулись и посмотрели.
+        they.lookOn(floor);
 
         // Вечером острый запах цветущей рябины заполнил зал.
-        Hall hall = new Hall("зал");
         ISmellable berry = new Rowan("рябина", "острый", true);
         hall.fillSmell(Time.EVENING, berry);
 
@@ -190,8 +213,8 @@ public class Program {
         they.wave();
 
         // Они привязали дом к большой рябине.
-        ICanAttachable house = new House("дом");
-        ICanAttachable bigRowanTree = new BigRowanTree("большое дерево рябины");
+        ICanUniteable house = new House("дом");
+        ICanUniteable bigRowanTree = new BigRowanTree("большое дерево рябины");
         Unition u1 = they.attach(house, bigRowanTree);
 
         // Муми-папа прикрепил канат к своей палке, а палку воткнул прямо в крышу чулана.
@@ -201,10 +224,6 @@ public class Program {
         Lumber lumber = new Lumber("чулан");
         Roof roofOfLumber = new Roof("крыша чулана", lumber);
         father.stick(u2, roofOfLumber);
-
-
-
-
 
         // End of story
         System.out.println();

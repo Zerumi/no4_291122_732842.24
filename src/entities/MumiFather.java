@@ -1,13 +1,14 @@
 package entities;
 
+import entities.interfacesAnimateActions.IAttachable;
 import places.Place;
-import things.unitions.ICanAttachable;
+import things.unitions.ICanUniteable;
 import things.Thing;
 import things.unitions.Unition;
 
 import java.util.Arrays;
 
-public class MumiFather extends Entity implements IAttachable{
+public class MumiFather extends Entity implements IAttachable {
 
     public MumiFather(String name) {
         super(name);
@@ -19,7 +20,7 @@ public class MumiFather extends Entity implements IAttachable{
     }
 
     @Override
-    public Unition attach(ICanAttachable... things) {
+    public Unition attach(ICanUniteable... things) {
 
         Unition unition = new Unition(things);
 
