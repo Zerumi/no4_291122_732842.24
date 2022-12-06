@@ -353,7 +353,7 @@ public class Program {
         // бонус от студента
         Class<Program> cl = Program.class;
         try {
-            System.out.println(readFromInputStream(cl.getResourceAsStream("image-1670351657600,12.txt")));
+            System.out.println(ResourceAccess.readFromInputStream(cl.getResourceAsStream("image-1670351657600,12.txt")));
         }
         catch (IOException ignored) {}
 
@@ -361,16 +361,19 @@ public class Program {
         System.out.println();
     }
 
-    private static String readFromInputStream(InputStream inputStream)
-            throws IOException {
-        StringBuilder resultStringBuilder = new StringBuilder();
-        try (BufferedReader br
-                     = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                resultStringBuilder.append(line).append("\n");
+    public static class ResourceAccess
+    {
+        private static String readFromInputStream(InputStream inputStream)
+                throws IOException {
+            StringBuilder resultStringBuilder = new StringBuilder();
+            try (BufferedReader br
+                         = new BufferedReader(new InputStreamReader(inputStream))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    resultStringBuilder.append(line).append("\n");
+                }
             }
+            return resultStringBuilder.toString();
         }
-        return resultStringBuilder.toString();
     }
 }
