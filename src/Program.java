@@ -62,10 +62,7 @@ import entities.entityBuff.Stat;
 import places.Place;
 import places.singlePlaces.*;
 import places.superPlaces.SuperPlace;
-import places.superPlaces.isolatedPlaces.Hall;
-import places.superPlaces.isolatedPlaces.House;
-import places.superPlaces.isolatedPlaces.Lumber;
-import places.superPlaces.isolatedPlaces.Theatre;
+import places.superPlaces.isolatedPlaces.*;
 import places.superPlaces.openPlaces.*;
 import story.Event;
 import story.Size;
@@ -73,10 +70,9 @@ import story.Story;
 import story.Time;
 import story.actions.*;
 import things.*;
-import things.food.Food;
-import things.food.ISmellable;
-import things.food.PreparedCereal;
+import things.food.*;
 import things.food.berries.Rowan;
+import things.food.cheese.Cheese;
 import things.unitions.ICanUniteable;
 import things.unitions.Unition;
 
@@ -170,7 +166,63 @@ public class Program {
         ((IDestroyable)sugarStorage).destroy(); // add reason?
 
         // Все обернулись и посмотрели.
+        they.rotate(180);
         they.lookOn(floor);
+
+        // Какая-то тень отделилась от стены в темном углу.
+        DarkCorner corner = new DarkCorner("темный угол");
+        Something something = new Something("что-то", corner);
+        something.peelOff();
+
+        // Что-то серое и сморщенное прошаркало по полу гостиной, заморгало от солнечного света и затрясло седыми усами, враждебно оглядывая семью муми-троллей.
+        Floor floorInHall = new Floor("пол в гостиной", hall);
+        Meaning enemier = new Meaning("враждебно", "враждебный взгляд");
+        something.setLocation(floorInHall);
+        something.shuffle();
+        something.lookOn(mom, enemier);
+        something.lookOn(father, enemier);
+
+        // Эмма не ответила, она смотрела на сыр...
+        Emma emma = new Emma("Эмма");
+        Cheese cheese = new Cheese("сыр");
+        emma.lookOn(cheese);
+
+        // Потом схватила ломтик сыра и сунула его в карман.
+        emma.addItemToInventory(cheese.getPiece());
+
+        // Ее взгляд блуждал по столу и остановился на блинчике.
+        Pancake pancake = new Pancake("блинчик");
+        emma.lookOn(dinnerTable);
+        emma.lookOn(pancake);
+
+        // Хомса умчался в кладовку.
+        Pantry pantry = new Pantry("кладовка");
+        homsa.setLocation(pantry);
+
+        // Эмма так и выхватила у него рыбку из лапы и с высоко поднятой головой прошаркала в свой угол.
+        EmmaCorner emmaCorner = new EmmaCorner("уголок Эммы");
+        Fish unluckyfish = new Fish("несчастная рыбка, которую скоро попытаются украсть... :(");
+        homsa.addItemToInventory(unluckyfish);
+        Buff emmaBuff;
+        if (emma.tryStealItem(homsa, unluckyfish))
+        {
+            emmaBuff = new Buff(Stat.PRIDE, () -> "Украденная вещь");
+        }
+        else
+        {
+            emmaBuff = new Buff(Stat.ANGER, () -> "Не украденная вещь");
+        }
+        emma.addBuff(emmaBuff);
+        emma.setLocation(emmaCorner);
+        emma.shuffle();
+
+        // Она долго гремела там и, вытащив наконец большую метлу, принялась усердно мести.
+        Meaning findingBroom = new Meaning("шум", "поиск метлы");
+        emma.noise(findingBroom);
+        Broom broom = new Broom("большая метла");
+        emma.sweep(broom);
+
+        // --- Start of 3rd lab work ---
 
         // Вечером острый запах цветущей рябины заполнил зал.
         ISmellable berry = new Rowan("рябина", "острый", true);
@@ -195,7 +247,6 @@ public class Program {
         ICanActionable theatre = new Theatre("театр");
         Place forest = new Forest("лес");
         Event theatreSwimming = new Event(BasicActions.SWIMMING, theatre, forest);
-        Emma emma = new Emma("Эмма");
         Buff fear = new Buff(Stat.FEAR, emma);
         they.setLocation(forest);
         they.addBuff(fear);
@@ -224,6 +275,8 @@ public class Program {
         Lumber lumber = new Lumber("чулан");
         Roof roofOfLumber = new Roof("крыша чулана", lumber);
         father.stick(u2, roofOfLumber);
+
+        // --- End of 3rd lab work ---
 
         // End of story
         System.out.println();

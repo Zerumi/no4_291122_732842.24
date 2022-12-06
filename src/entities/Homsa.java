@@ -59,4 +59,10 @@ public class Homsa extends Entity {
             System.out.println("Глаза " +  Homsa.this.getName() + " потемнели (Новый цвет: " + color + ").");
         }
     }
+
+    @Override
+    public void setLocation(Place location) {
+        System.out.println(getName() + " умчался в локацию: " + location.getName() + ".");
+        super.setLocation(location);
+    }
 }

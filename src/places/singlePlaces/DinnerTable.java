@@ -1,9 +1,9 @@
 package places.singlePlaces;
 
 import entities.Entity;
-import places.singlePlaces.interfaces.IDinnerTable;
+import exceptions.chechedExceptions.DinnerTableIsAlreadyPreparedException;
 
-public class DinnerTable extends Table implements IDinnerTable {
+public class DinnerTable extends Table {
     private boolean isPrepared;
 
     public DinnerTable(String name) {
@@ -11,15 +11,16 @@ public class DinnerTable extends Table implements IDinnerTable {
         isPrepared = false;
     }
 
-    @Override
     public boolean isPrepared() {
         return isPrepared;
     }
 
-    @Override
     public void prepare(Entity preparator) {
         try {
-            IDinnerTable.super.prepare(preparator);
+            if (isPrepared())
+            {
+                throw new DinnerTableIsAlreadyPreparedException("Стол уже приготовлен для трапезы!");
+            }
         }
         catch (Exception ex)
         {

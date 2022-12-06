@@ -1,5 +1,6 @@
 package entities;
 
+import entities.emotionMeanings.Meaning;
 import entities.entityBuff.Buff;
 import entities.entityBuff.ISourceable;
 import entities.interfacesAnimateActions.IWorriable;
@@ -13,11 +14,13 @@ import things.Thing;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Entity implements ICanActionable, ISourceable {
     private String name;
     private Place location;
     private ArrayList<Buff> bufflist;
+    private int angleRotate;
 
     private ArrayList<Thing> inventory;
 
@@ -26,6 +29,7 @@ public abstract class Entity implements ICanActionable, ISourceable {
         location = new UnknownLocation("вне времени и пространства");
         bufflist = new ArrayList<>();
         inventory = new ArrayList<>();
+        angleRotate = ThreadLocalRandom.current().nextInt(0,360);
     }
 
     protected Entity(String name) {
@@ -58,6 +62,16 @@ public abstract class Entity implements ICanActionable, ISourceable {
         return location;
     }
 
+    public int getRotateAngle()
+    {
+        return angleRotate;
+    }
+
+    public void rotate(int angleRotate)
+    {
+        this.angleRotate += angleRotate;
+    }
+
     protected void setName(String name) {
         this.name = name;
     }
@@ -83,6 +97,16 @@ public abstract class Entity implements ICanActionable, ISourceable {
         System.out.println(this.getName() + " посмотрел на: " + what.getName() + ".");
     }
 
+    public void lookOn(Entity who, Meaning meaning)
+    {
+        System.out.println(this.getName() + " " + meaning.getDescription() + " посмотрел на: " + who.getName() + ".");
+    }
+
+    public void lookOn(Thing something)
+    {
+        System.out.println(this.getName() + " посмотрел на: " + something.getName() + ", находящийся в локации: " + something.getLocation().getName() + ".");
+    }
+
     public static void getWorried(IWorriable entity)
     {
         entity.worry();
@@ -105,12 +129,14 @@ public abstract class Entity implements ICanActionable, ISourceable {
         inventory.add(thing);
     }
 
-    public void removeItemFromInventory(Thing thing)
+    public boolean removeItemFromInventory(Thing thing)
     {
-        if (inventory.remove(thing))
+        boolean result = inventory.remove(thing);
+        if (result)
         {
             System.out.println("Из инвентаря персонажа " + getName() + " пропал предмет " + thing.getName());
         }
+        return result;
     }
 
     @Override

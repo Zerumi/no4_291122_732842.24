@@ -1,13 +1,13 @@
 package story.actions;
 
 import entities.Entity;
-import places.singlePlaces.interfaces.IDinnerTable;
+import places.singlePlaces.DinnerTable;
 
 public class PreparingDinnerTable extends Action {
 
-    IDinnerTable table;
+    DinnerTable table;
 
-    public PreparingDinnerTable(IDinnerTable table, Entity who) {
+    public PreparingDinnerTable(DinnerTable table, Entity who) {
         super("подготовка " + table.getName() + " к еде", who);
         this.table = table;
     }
