@@ -1,14 +1,14 @@
 package entities;
 
 import entities.emotionMeanings.Meaning;
-import entities.interfacesAnimateActions.INoisable;
-import entities.interfacesAnimateActions.IShuffable;
-import entities.interfacesAnimateActions.IStealable;
-import entities.interfacesAnimateActions.ISweepable;
+import entities.interfacesAnimateActions.*;
+import places.Place;
+import story.Time;
 import things.Broom;
+import things.IKnockable;
 import things.Thing;
 
-public class Emma extends Entity implements IStealable, IShuffable, INoisable, ISweepable {
+public class Emma extends Entity implements IStealable, IShuffable, INoisable, ISweepable, IHeadShakeable, IShrugable, ISnortable, IRunnable, IMutterable, ICanKnock {
 
     public static final double STEAL_PROBABILITY = 0.3; // test it with anonymous class
 
@@ -54,5 +54,34 @@ public class Emma extends Entity implements IStealable, IShuffable, INoisable, I
 
     public void sweep(Broom broom) {
         System.out.println(getName() + " принялась мести с помощью " + broom.getName());
+    }
+
+    @Override
+    public void shakeHead() {
+        System.out.println(getName() + " покачала головой.");
+    }
+
+    @Override
+    public void shrug() {
+        System.out.println(getName() + " пожала плечами");
+    }
+
+    @Override
+    public void snort(Meaning meaning) {
+        System.out.println(getName() + " " + meaning.getName() + " фыркнула.");
+    }
+
+    public void runTo(Time when, Place location) {
+        System.out.println(when.getName() + " " + getName() + " прибежала на локацию: " + location.getName());
+    }
+
+    @Override
+    public void mutter() {
+        System.out.println(getName() + " бормотала.");
+    }
+
+    @Override
+    public void knock(IKnockable thing) {
+        System.out.println(getName() + " стучала " + thing.getName());
     }
 }

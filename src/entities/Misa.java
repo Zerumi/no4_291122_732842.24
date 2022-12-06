@@ -3,8 +3,9 @@ package entities;
 import entities.emotionMeanings.Meaning;
 import entities.interfacesAnimateActions.INoisable;
 import entities.interfacesAnimateActions.ISighable;
+import entities.interfacesAnimateActions.IThinkable;
 
-public class Misa extends Entity implements INoisable, ISighable {
+public class Misa extends Entity implements INoisable, ISighable, IThinkable {
     public Misa(String name) {
         super(name);
     }
@@ -17,5 +18,10 @@ public class Misa extends Entity implements INoisable, ISighable {
     public void sigh()
     {
         System.out.println(getName() + " вздохнула.");
+    }
+
+    @Override
+    public void think(String thought) {
+        System.out.println("\"" + thought + "\" -- думала " + getName());
     }
 }

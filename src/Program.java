@@ -61,6 +61,8 @@ import entities.entityBuff.Buff;
 import entities.entityBuff.Stat;
 import places.Place;
 import places.singlePlaces.*;
+import places.singlePlaces.trees.BigRowanTree;
+import places.singlePlaces.trees.HieghestTree;
 import places.superPlaces.SuperPlace;
 import places.superPlaces.isolatedPlaces.*;
 import places.superPlaces.openPlaces.*;
@@ -77,6 +79,7 @@ import things.unitions.ICanUniteable;
 import things.unitions.Unition;
 
 import java.awt.*;
+import java.io.*;
 
 
 // Согласованная объектная модель:
@@ -278,34 +281,96 @@ public class Program {
 
         // --- End of 3rd lab work ---
 
+        // Эмма молча уставилась на него.
+        Meaning silenceMeaning = new Meaning("молча", "молчаливое означающее");
+        emma.lookOn(father, silenceMeaning);
+
+        // Покачав головой, она пожала плечами, презрительно фыркнула и снова принялась мести пол.
+        emma.shakeHead();
+        emma.shrug();
+        emma.snort(despite);
+        emma.sweep(broom);
+
+        // Муми-тролль стоял, разглядывая высоченное дерево.
+        MumiThroll mumiThroll = new MumiThroll("Муми-тролль");
+        HieghestTree hieghestTree = new HieghestTree("высоченное дерево");
+        mumiThroll.lookOn(hieghestTree);
+
+        // Рои пчел и ос кружились вокруг белых цветов, а ствол красиво изогнулся, образовав вместе с веткой колыбельку, вполне пригодную для какого-нибудь малютки.
+        final int BEAUTIFUL_ROTATION_ANGLE = 30;
+        Flowers flowers = new Flowers("цветы", Color.WHITE);
+        Hive hive = new Hive("рой пчел", flowers);
+        hive.whirl();
+        try {
+            hieghestTree.getTrunk().curve(BEAUTIFUL_ROTATION_ANGLE);
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Упс... " + ex.getMessage());
+            System.out.println("Мы восстанавливаем сцену для продолжения истории... :(");
+            Story.FreezeStory(7000);
+        }
+
+        // хочу стать больше, хочу-стать-больше, хочу-стать-больше! -- кричала малышка Мю.
+        miu.loud("хочу стать больше, хочу-стать-больше, хочу-стать-больше!");
+
+        // Муми-тролль по-прежнему стоял, разглядывая зеленую крону дерева.
+        mumiThroll.lookOn(hieghestTree.getCrown());
+
+        // Муми-тролль потихоньку насвистывал, думая о веревочной лестнице.
+        mumiThroll.whistle();
+        mumiThroll.think("Веревочная лестница.... Наверное ее можно сделать из веревок....");
+
+        // Тотчас прибежала Эмма.
+        emma.runTo(Time.ONLY_RIGHT_NOW, mumiThroll.getLocation());
+
+        // Что-то бормоча и постукивая метлой, она заковыляла в темноту.
+        emma.mutter();
+        emma.knock(broom);
+        emma.setLocation(new UnknownLocation("неизвестное миру сему место"));
+
+        // Они в растерянности смотрели ей вслед, и на какое-то мгновение семейству муми-троллей стало не по себе.
+        Meaning confuseMeaning = new Meaning("растерянность", "растерянный взгляд");
+        Buff theyConfuse = new Buff(Stat.CONFUSE, emma);
+        they.addBuff(theyConfuse);
+        they.lookOn(emma, confuseMeaning);
+
+        // А потом они обо всем забыли.
+        Story.FreezeStory(1000);
+        they.removeBuff(theyConfuse);
+
+        // Вечером мама постелила Муми-троллю и фрекен Снорк на дереве.
+        BedSheet bedSheet = new BedSheet("постельное белье");
+        mom.layDown(bedSheet, hieghestTree, Time.EVENING, mumiThroll, snork);
+
+        // Миса тоже взглянула на дерево.
+        misa.lookOn(hieghestTree);
+
+        // "Почему все так получается? -- думала она. -- Почему все так печально и сложно в моей жизни?"
+        // прим. ред: согласен
+        misa.think("\"Почему все так получается? Почему все так печально и сложно в моей жизни?\"");
+
+        // бонус от студента
+        Class<Program> cl = Program.class;
+        try {
+            System.out.println(readFromInputStream(cl.getResourceAsStream("image-1670351657600,12.txt")));
+        }
+        catch (IOException ignored) {}
+
         // End of story
         System.out.println();
+    }
 
-        // Описание состояния всех объектов
-        System.out.println("Описание состояния всех объектов:");
-        System.out.println("hall:" + hall);
-        System.out.println("berry:" + berry);
-        System.out.println("underCeiling:" + underCeiling);
-        System.out.println("birds:" + birds);
-        System.out.println("spiders:" + spiders);
-        System.out.println("hower:" + hower);
-        System.out.println("miu:" + miu);
-        System.out.println("ant:" + ant);
-        System.out.println("theatre:" + theatre);
-        System.out.println("forest:" + forest);
-        System.out.println("theatreSwimming:" + theatreSwimming);
-        System.out.println("emma:" + emma);
-        System.out.println("fear:" + fear);
-        System.out.println("they:" + they);
-        System.out.println("nearWater:" + nearWater);
-        System.out.println("house:" + house);
-        System.out.println("bigRowanTree:" + bigRowanTree);
-        System.out.println("1-st unition:" + u1);
-        System.out.println("father:" + father);
-        System.out.println("rope:" + rope);
-        System.out.println("stick:" + stick);
-        System.out.println("2-nd unition:" + u2);
-        System.out.println("lumber:" + lumber);
-        System.out.println("roofOfLumber:" + roofOfLumber);
+    private static String readFromInputStream(InputStream inputStream)
+            throws IOException {
+        StringBuilder resultStringBuilder = new StringBuilder();
+        try (BufferedReader br
+                     = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                resultStringBuilder.append(line).append("\n");
+            }
+        }
+        return resultStringBuilder.toString();
     }
 }

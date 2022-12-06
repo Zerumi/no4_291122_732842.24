@@ -1,10 +1,11 @@
 package entities;
 
+import entities.interfacesAnimateActions.ILoudable;
 import places.Place;
 
 import java.util.Objects;
 
-public class Miu extends Entity {
+public class Miu extends Entity implements ILoudable {
 
     public Miu(String name)
     {
@@ -26,5 +27,10 @@ public class Miu extends Entity {
         {
             System.out.println(this.getName() + " представила себе " + who.getName() + " в " + getLocation().getName() + ". Каково же было ее удивление, когда она не обнаружила " + who.getName() + " в этом месте.");
         }
+    }
+
+    @Override
+    public void loud(String phrase) {
+        System.out.println("\"" + phrase + "\" -- кричала " + getName() + ".");
     }
 }

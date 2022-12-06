@@ -6,7 +6,7 @@ import places.superPlaces.openPlaces.UnknownLocation;
 
 import java.util.Objects;
 
-public abstract class SinglePlace extends Place {
+public abstract class SinglePlace extends Place implements ILookable {
 
     private SuperPlace location;
 

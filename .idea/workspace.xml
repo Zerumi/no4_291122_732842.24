@@ -7,28 +7,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="076bf813-87cb-4ac9-a9e0-f93221fc88f6" name="Changes" comment="Extending project, part 1">
-      <change afterPath="$PROJECT_DIR$/src/entities/Something.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/ICanPeelOff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IShuffable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IStealable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/ISweepable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/places/superPlaces/isolatedPlaces/DarkCorner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/places/superPlaces/isolatedPlaces/EmmaCorner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/places/superPlaces/isolatedPlaces/Pantry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/things/Broom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/things/food/Fish.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/things/food/Pancake.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/things/food/cheese/Cheese.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/things/food/cheese/CheesePiece.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/image-1670351657600,12.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/Hive.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/MumiThroll.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/ICanKnock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/ICanLayDown.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IHeadShakeable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/ILoudable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IMutterable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IRunnable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IShrugable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/ISnortable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IThinkable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IWhirlable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/interfacesAnimateActions/IWhistlable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/places/singlePlaces/ILookable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/places/singlePlaces/trees/HieghestTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/places/singlePlaces/trees/Tree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/places/superPlaces/openPlaces/Flowers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/things/BedSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/things/ICanBeLayDownThing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/things/IKnockable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/no4_291122_732842_24_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/no4_291122_732842_24_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no4_291122_732842.24.iml" beforeDir="false" afterPath="$PROJECT_DIR$/no4_291122_732842.24.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Emma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Emma.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Homsa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Homsa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Misa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Misa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Miu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Miu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/MumiMother.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/MumiMother.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/entityBuff/Stat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/entityBuff/Stat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/places/singlePlaces/DinnerTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/places/singlePlaces/DinnerTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/places/singlePlaces/interfaces/IDinnerTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/story/actions/PreparingDinnerTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/story/actions/PreparingDinnerTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/uncheckedExceptions/ExampleOfRuntimeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/uncheckedExceptions/TreeBrokenException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/places/singlePlaces/BigRowanTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/places/singlePlaces/trees/BigRowanTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/places/singlePlaces/SinglePlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/places/singlePlaces/SinglePlace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/things/Broom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/things/Broom.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,28 +74,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Zerumi/ЛАБЫ ПРОГА 2022/no3_191022_732842&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Zerumi/ЛАБЫ ПРОГА 2022/no4_291122_732842.24/resources",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="entities.interfacesAnimateActions" />
       <recent name="things" />
+      <recent name="places.superPlaces.openPlaces" />
       <recent name="places.superPlaces.isolatedPlaces" />
       <recent name="things.food" />
-      <recent name="places.singlePlaces" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Zerumi\ЛАБЫ ПРОГА 2022\no4_291122_732842.24\resources" />
+      <recent name="D:\Zerumi\ЛАБЫ ПРОГА 2022\no4_291122_732842.24" />
+      <recent name="D:\Zerumi\ЛАБЫ ПРОГА 2022\no4_291122_732842.24\src\story" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
@@ -129,6 +147,7 @@
       <workItem from="1670245984134" duration="21563000" />
       <workItem from="1670315902048" duration="5396000" />
       <workItem from="1670333227353" duration="5560000" />
+      <workItem from="1670341400337" duration="11264000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1666217231948</created>

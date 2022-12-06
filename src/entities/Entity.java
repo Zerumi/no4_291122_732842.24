@@ -8,6 +8,7 @@ import places.Place;
 import places.singlePlaces.SinglePlace;
 import places.superPlaces.openPlaces.UnknownLocation;
 import story.Event;
+import places.singlePlaces.ILookable;
 import story.Time;
 import story.actions.ICanActionable;
 import things.Thing;
@@ -92,11 +93,6 @@ public abstract class Entity implements ICanActionable, ISourceable {
         System.out.println(this.getName() + " наблюдал за событием: " + event.getEventDescribe() + ".");
     }
 
-    public void lookOn(SinglePlace what)
-    {
-        System.out.println(this.getName() + " посмотрел на: " + what.getName() + ".");
-    }
-
     public void lookOn(Entity who, Meaning meaning)
     {
         System.out.println(this.getName() + " " + meaning.getDescription() + " посмотрел на: " + who.getName() + ".");
@@ -105,6 +101,11 @@ public abstract class Entity implements ICanActionable, ISourceable {
     public void lookOn(Thing something)
     {
         System.out.println(this.getName() + " посмотрел на: " + something.getName() + ", находящийся в локации: " + something.getLocation().getName() + ".");
+    }
+
+    public void lookOn(ILookable what)
+    {
+        System.out.println(this.getName() + " посмотрел на: " + what.getName() + ".");
     }
 
     public static void getWorried(IWorriable entity)
