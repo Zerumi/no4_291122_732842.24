@@ -6,14 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="076bf813-87cb-4ac9-a9e0-f93221fc88f6" name="Changes" comment="Static inner class added + release">
-      <change afterPath="$PROJECT_DIR$/diagrams/UML (no4_291122_732842.24).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/no4_291122_732842.24.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/no4_291122_732842.24.drawio" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/no4_291122_732842.24.graphml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/no4_291122_732842.24.plantuml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/no4_291122_732842.24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagrams/no4_291122_732842.24.uml" afterDir="false" />
+    <list default="true" id="076bf813-87cb-4ac9-a9e0-f93221fc88f6" name="Changes" comment="add diagrams">
+      <change afterPath="$PROJECT_DIR$/~$Отчет.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/~WRL3186.tmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Отчет.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +117,7 @@
       <workItem from="1670315902048" duration="5396000" />
       <workItem from="1670333227353" duration="5560000" />
       <workItem from="1670341400337" duration="14277000" />
-      <workItem from="1670357663238" duration="1662000" />
+      <workItem from="1670357663238" duration="3545000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1666217231948</created>
@@ -200,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670356471137</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add diagrams">
+      <created>1670360428494</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1670360428494</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +233,8 @@
     <MESSAGE value="Extending project, part 4" />
     <MESSAGE value="Overrinde Object's methods" />
     <MESSAGE value="Static inner class added + release" />
-    <option name="LAST_COMMIT_MESSAGE" value="Static inner class added + release" />
+    <MESSAGE value="add diagrams" />
+    <option name="LAST_COMMIT_MESSAGE" value="add diagrams" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
