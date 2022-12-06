@@ -1,0 +1,871 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Action {
+  # Action(String, Entity): 
+  - actor: Entity
+  + equals(Object): boolean
+  + toString(): String
+  + invokeAction(): void
+  + hashCode(): int
+   actor: Entity
+   action: String
+   event: Event
+}
+enum BasicActions << enumeration >> {
+  - BasicActions(String): 
+  - actionDescribe: String
+  + values(): BasicActions[]
+  + valueOf(String): BasicActions
+   action: String
+   actionDescribe: String
+}
+class BedSheet {
+  + BedSheet(String): 
+}
+class Berry {
+  # Berry(String, String): 
+  # Berry(): 
+  # Berry(String): 
+  # Berry(String, String, boolean): 
+  - smell: String
+  - isBlossom: boolean
+  + toString(): String
+  + hashCode(): int
+  + equals(Object): boolean
+   smell: String
+   isBlossom: boolean
+   smellSource: String
+}
+class BigRowanTree {
+  + BigRowanTree(String): 
+}
+class BigScaryAnt {
+  + BigScaryAnt(String, Place): 
+  + BigScaryAnt(String): 
+}
+class Birds {
+  + Birds(String): 
+  + hunt(Entity): void
+  + flutter(): void
+}
+class Broom {
+  + Broom(String): 
+}
+class Buff {
+  + Buff(Stat, ISourceable): 
+  - stat: Stat
+  - source: ISourceable
+  + toString(): String
+  + equals(Object): boolean
+  + hashCode(): int
+   source: String
+   stat: Stat
+}
+class Cheese {
+  + Cheese(String): 
+   piece: CheesePiece
+}
+class CheesePiece {
+  + CheesePiece(String): 
+}
+class Crown {
+  + Crown(): 
+  - name: String
+  + hashCode(): int
+  + toString(): String
+  + equals(Object): boolean
+   name: String
+}
+class DarkCorner {
+  + DarkCorner(String): 
+}
+class DinnerTable {
+  + DinnerTable(String): 
+  - isPrepared: boolean
+  + prepare(Entity): void
+  + equals(Object): boolean
+  + toString(): String
+  + hashCode(): int
+   isPrepared: boolean
+}
+class DinnerTableIsAlreadyPreparedException {
+  + DinnerTableIsAlreadyPreparedException(String): 
+}
+class Emma {
+  + Emma(String): 
+  + STEAL_PROBABILITY: double
+  + sweep(Broom): void
+  + mutter(): void
+  + noise(Meaning): void
+  + shakeHead(): void
+  + shrug(): void
+  + shuffle(): void
+  + knock(IKnockable): void
+  + runTo(Time, Place): void
+  + tryStealItem(Entity, Thing): boolean
+  + snort(Meaning): void
+   STEAL_PROBABILITY: double
+}
+class EmmaCorner {
+  + EmmaCorner(String): 
+}
+class Entity {
+  # Entity(String): 
+  # Entity(String, Place): 
+  # Entity(String, Place, ArrayList<Buff>): 
+  # Entity(String, Place, ArrayList<Buff>, ArrayList<Thing>): 
+  - name: String
+  - location: Place
+  + lookOn(ILookable): void
+  + addBuff(Buff): void
+  + hashCode(): int
+  + getWorried(IWorriable): void
+  + removeItemFromInventory(Thing): boolean
+  + rotate(int): void
+  + toString(): String
+  + lookFor(Event): void
+  + lockAttention(Time, Event): void
+  + lookOn(Entity, Meaning): void
+  + equals(Object): boolean
+  + lookOn(Thing): void
+  + removeBuff(Buff): void
+  + addItemToInventory(Thing): void
+   name: String
+   source: String
+   rotateAngle: int
+   location: Place
+}
+class Event {
+  + Event(Action): 
+  + Event(BasicActions, ICanActionable, Place): 
+  + Event(Action, Place): 
+  + Event(String): 
+  + Event(IActionable, ICanActionable, Place): 
+  + toString(): String
+  + equals(Object): boolean
+  + hashCode(): int
+   eventDescribe: String
+   eventStr: String
+}
+class Fish {
+  + Fish(String): 
+}
+class Floor {
+  + Floor(String, SuperPlace): 
+}
+class Flowers {
+  + Flowers(String, Color): 
+  - color: Color
+  + hashCode(): int
+  + changeColor(Color): void
+  + toString(): String
+  + equals(Object): boolean
+   color: Color
+}
+class Food {
+  # Food(String): 
+}
+class Forest {
+  + Forest(String): 
+}
+class FreakenSnork {
+  + FreakenSnork(String): 
+  + FreakenSnork(String, Place): 
+}
+class Furniture {
+  + Furniture(String, SuperPlace): 
+}
+class Hall {
+  + Hall(String): 
+}
+class HieghestTree {
+  + HieghestTree(String): 
+}
+class Hive {
+  + Hive(String, Place): 
+  + whirl(): void
+}
+class Homsa {
+  + Homsa(String, Place): 
+  + hashCode(): int
+  + equals(Object): boolean
+  + setEyesParams(Color, Size): void
+  + toString(): String
+   homsaEyes: HomsaEyes
+   location: Place
+}
+class HomsaEyes {
+  + HomsaEyes(Color, Size): 
+  + equals(Object): boolean
+  + darker(): void
+  + shine(): void
+  + examine(Entity, Meaning): void
+  + toString(): String
+  + hashCode(): int
+}
+class House {
+  + House(String): 
+}
+class Hower {
+  + Hower(String, SuperPlace): 
+  + Hower(String): 
+}
+interface IActionable << interface >> {
+   action: String
+}
+interface IAttachable << interface >> {
+  + attach(ICanUniteable[]): Unition
+}
+interface ICanActionable << interface >> {
+   name: String
+}
+interface ICanBeLayDownThing << interface >> {
+   name: String
+}
+interface ICanBeLayOutPlace << interface >> {
+   name: String
+}
+interface ICanBeLayedOut << interface >> {
+   name: String
+}
+interface ICanKnock << interface >> {
+  + knock(IKnockable): void
+}
+interface ICanLayDown << interface >> {
+  + layDown(ICanBeLayDownThing, Place): void
+  + layDown(ICanBeLayDownThing, Place, Time, Entity[]): void
+}
+interface ICanLayOut << interface >> {
+  + layOut(ICanBeLayedOut, ICanBeLayOutPlace): void
+}
+interface ICanPeelOff << interface >> {
+  + peelOff(): void
+}
+interface ICanUniteable << interface >> {
+   name: String
+}
+interface IDestroyable << interface >> {
+  + destroy(): void
+}
+interface IHeadShakeable << interface >> {
+  + shakeHead(): void
+}
+interface IKnockable << interface >> {
+   name: String
+}
+interface ILookable << interface >> {
+   name: String
+}
+interface ILoudable << interface >> {
+  + loud(String): void
+}
+interface IMutterable << interface >> {
+  + mutter(): void
+}
+interface INoisable << interface >> {
+  + noise(Meaning): void
+}
+interface IRunnable << interface >> {
+  + runTo(Time, Place): void
+}
+interface IShrugable << interface >> {
+  + shrug(): void
+}
+interface IShuffable << interface >> {
+  + shuffle(): void
+}
+interface ISighable << interface >> {
+  + sigh(): void
+}
+interface ISmellable << interface >> {
+   smell: String
+   smellSource: String
+}
+interface ISnortable << interface >> {
+  + snort(Meaning): void
+}
+interface ISourceable << interface >> {
+   source: String
+}
+interface IStealable << interface >> {
+  + tryStealItem(Entity, Thing): boolean
+   stealProbability: double
+}
+interface ISweepable << interface >> {
+  + sweep(Broom): void
+}
+interface IThinkable << interface >> {
+  + think(String): void
+}
+interface IWhirlable << interface >> {
+  + whirl(): void
+}
+interface IWhistlable << interface >> {
+  + whistle(): void
+}
+interface IWorriable << interface >> {
+  + worry(): void
+}
+class IsolatedPlace {
+  # IsolatedPlace(String): 
+  + fillSmell(Time, ISmellable): void
+  + equals(Object): boolean
+  + toString(): String
+  + hashCode(): int
+}
+class LayingOut<T> {
+  + LayingOut(T, ICanBeLayedOut, ICanBeLayOutPlace): 
+  + invokeAction(): void
+}
+class Lumber {
+  + Lumber(String): 
+}
+class Meaning {
+  + Meaning(String, String): 
+  - description: String
+  - name: String
+  + toString(): String
+  + equals(Object): boolean
+  + hashCode(): int
+   name: String
+   description: String
+   source: String
+}
+class MiddleOfDust {
+  + MiddleOfDust(String): 
+}
+class Misa {
+  + Misa(String): 
+  + noise(Meaning): void
+  + think(String): void
+  + sigh(): void
+}
+class Miu {
+  + Miu(String, Place): 
+  + Miu(String): 
+  + loud(String): void
+  + meet(Entity): void
+}
+class MiuTest {
+  + MiuTest(): 
+  + MiuTest(): void
+}
+class MumiFather {
+  + MumiFather(String): 
+  + attach(ICanUniteable[]): Unition
+  + stick(Thing, Place): void
+}
+class MumiMother {
+  + MumiMother(String, Place): 
+  + layDown(ICanBeLayDownThing, Place, Time, Entity[]): void
+  + layDown(ICanBeLayDownThing, Place): void
+  + layOut(ICanBeLayedOut, ICanBeLayOutPlace): void
+}
+class MumiThroll {
+  + MumiThroll(String, Place): 
+  + MumiThroll(String): 
+  + think(String): void
+  + whistle(): void
+}
+class NearWater {
+  + NearWater(String): 
+}
+class ObjectMethodsTest {
+  + ObjectMethodsTest(): 
+  + testObjectMethods(): void
+}
+class OpenPlace {
+  # OpenPlace(String): 
+}
+class Pancake {
+  + Pancake(String): 
+}
+class Pantry {
+  + Pantry(String): 
+}
+class PaperPalma {
+  + PaperPalma(String, SuperPlace): 
+}
+class Place {
+  # Place(): 
+  # Place(String): 
+  - name: String
+  + equals(Object): boolean
+  + toString(): String
+  + hashCode(): int
+   name: String
+}
+class Plate {
+  + Plate(String): 
+}
+class PreparedCereal {
+  + PreparedCereal(String): 
+}
+class PreparingDinnerTable {
+  + PreparingDinnerTable(DinnerTable, Entity): 
+  + invokeAction(): void
+}
+class Program {
+  + Program(): 
+  + main(String[]): void
+}
+class ResourceAccess {
+  + ResourceAccess(): 
+  - readFromInputStream(InputStream): String
+}
+class Roof {
+  + Roof(String, SuperPlace): 
+}
+class Rope {
+  + Rope(String): 
+}
+class Rowan {
+  + Rowan(String, String): 
+  + Rowan(String, String, boolean): 
+}
+class SinglePlace {
+  # SinglePlace(String): 
+  # SinglePlace(String, SuperPlace): 
+  + hashCode(): int
+  + toString(): String
+  + equals(Object): boolean
+}
+enum Size << enumeration >> {
+  + Size(): 
+  + values(): Size[]
+  + valueOf(String): Size
+}
+class Something {
+  + Something(String, Place): 
+  + shuffle(): void
+  + peelOff(): void
+}
+class Spiders {
+  + Spiders(String): 
+}
+enum Stat << enumeration >> {
+  + Stat(): 
+  + valueOf(String): Stat
+  + values(): Stat[]
+}
+class Stick {
+  + Stick(String): 
+}
+class Story {
+  + Story(): 
+  + FreezeStory(): void
+  + FreezeStory(int): void
+}
+class SugarStorage {
+  + SugarStorage(String): 
+  + destroy(): void
+}
+class SuperPlace {
+  # SuperPlace(String): 
+  # SuperPlace(): 
+}
+class Table {
+  + Table(String): 
+}
+class Theatre {
+  + Theatre(String): 
+}
+class They {
+  + They(String, Place): 
+  + They(String): 
+  + They(String, Place, Buff[]): 
+  + wave(): void
+  + worry(): void
+  + huddle(): void
+  + removeBuff(Buff): void
+  + talk(): void
+  + attach(ICanUniteable[]): Unition
+}
+class Thing {
+  # Thing(): 
+  # Thing(String): 
+  # Thing(String, Place): 
+  - location: Place
+  - name: String
+  + setLocation(Entity, Place): void
+  + equals(Object): boolean
+  + toString(): String
+  + hashCode(): int
+   name: String
+   location: Place
+}
+enum Time << enumeration >> {
+  - Time(String): 
+  + values(): Time[]
+  + valueOf(String): Time
+   name: String
+}
+class Tree {
+  + Tree(String): 
+  + Tree(String, SuperPlace): 
+  + Tree(String, SuperPlace, int): 
+  - crown: Crown
+  - trunk: Trunk
+  + equals(Object): boolean
+  + hashCode(): int
+  + toString(): String
+   trunk: Trunk
+   crown: Crown
+}
+class TreeBrokenException {
+  + TreeBrokenException(String): 
+}
+class Trunk {
+  + Trunk(int): 
+  - angleRotate: int
+  - height: int
+  + curve(int): void
+  + equals(Object): boolean
+  + hashCode(): int
+   angleRotate: int
+   height: int
+}
+class UnderCeiling {
+  + UnderCeiling(String): 
+}
+class Unition {
+  + Unition(ICanUniteable[]): 
+  + hashCode(): int
+  + toString(): String
+  + equals(Object): boolean
+}
+class UnknownLocation {
+  + UnknownLocation(): 
+  + UnknownLocation(String): 
+}
+class UnknownMeaning {
+  + UnknownMeaning(String, String): 
+}
+
+Action                                 -[#595959,dashed]->  Action                                
+Action                                "1" *-[#595959,plain]-> "actor\n1" Entity                                
+Action                                 -[#595959,dashed]->  Event                                 : "«create»"
+Action                                 -[#008200,dashed]-^  IActionable                           
+BasicActions                           -[#008200,dashed]-^  IActionable                           
+BedSheet                               -[#008200,dashed]-^  ICanBeLayDownThing                    
+BedSheet                               -[#000082,plain]-^  Thing                                 
+Berry                                  -[#595959,dashed]->  Berry                                 
+Berry                                  -[#008200,dashed]-^  ISmellable                            
+Berry                                  -[#000082,plain]-^  Thing                                 
+BigRowanTree                           -[#008200,dashed]-^  ICanUniteable                         
+BigRowanTree                           -[#000082,plain]-^  Tree                                  
+BigScaryAnt                            -[#000082,plain]-^  Entity                                
+BigScaryAnt                            -[#595959,dashed]->  Place                                 
+Birds                                  -[#000082,plain]-^  Entity                                
+Birds                                  -[#595959,dashed]->  Place                                 
+Broom                                  -[#008200,dashed]-^  IKnockable                            
+Broom                                  -[#000082,plain]-^  Thing                                 
+Buff                                   -[#595959,dashed]->  Buff                                  
+Buff                                  "1" *-[#595959,plain]-> "source\n1" ISourceable                           
+Buff                                  "1" *-[#595959,plain]-> "stat\n1" Stat                                  
+Cheese                                 -[#595959,dashed]->  CheesePiece                           : "«create»"
+Cheese                                 -[#000082,plain]-^  Food                                  
+CheesePiece                            -[#000082,plain]-^  Cheese                                
+Crown                                  -[#595959,dashed]->  Crown                                 
+Crown                                  -[#008200,dashed]-^  ILookable                             
+Crown                                  -[#595959,dashed]->  Place                                 
+Crown                                  +-[#820000,plain]-  Tree                                  
+DarkCorner                             -[#000082,plain]-^  IsolatedPlace                         
+DinnerTable                            -[#595959,dashed]->  DinnerTable                           
+DinnerTable                            -[#595959,dashed]->  DinnerTableIsAlreadyPreparedException : "«create»"
+DinnerTable                            -[#595959,dashed]->  Entity                                
+DinnerTable                            -[#595959,dashed]->  Place                                 
+DinnerTable                            -[#595959,dashed]->  SinglePlace                           
+DinnerTable                            -[#000082,plain]-^  Table                                 
+Emma                                   -[#595959,dashed]->  Broom                                 
+Emma                                   -[#595959,dashed]->  Emma                                  
+Emma                                   -[#000082,plain]-^  Entity                                
+Emma                                   -[#008200,dashed]-^  ICanKnock                             
+Emma                                   -[#008200,dashed]-^  IHeadShakeable                        
+Emma                                   -[#595959,dashed]->  IKnockable                            
+Emma                                   -[#008200,dashed]-^  IMutterable                           
+Emma                                   -[#008200,dashed]-^  INoisable                             
+Emma                                   -[#008200,dashed]-^  IRunnable                             
+Emma                                   -[#008200,dashed]-^  IShrugable                            
+Emma                                   -[#008200,dashed]-^  IShuffable                            
+Emma                                   -[#008200,dashed]-^  ISnortable                            
+Emma                                   -[#008200,dashed]-^  IStealable                            
+Emma                                   -[#008200,dashed]-^  ISweepable                            
+Emma                                   -[#595959,dashed]->  Meaning                               
+Emma                                   -[#595959,dashed]->  Place                                 
+Emma                                   -[#595959,dashed]->  Thing                                 
+Emma                                   -[#595959,dashed]->  Time                                  
+EmmaCorner                             -[#000082,plain]-^  IsolatedPlace                         
+Entity                                "1" *-[#595959,plain]-> "bufflist\n*" Buff                                  
+Entity                                 -[#595959,dashed]->  Entity                                
+Entity                                 -[#595959,dashed]->  Event                                 
+Entity                                 -[#008200,dashed]-^  ICanActionable                        
+Entity                                 -[#595959,dashed]->  ILookable                             
+Entity                                 -[#008200,dashed]-^  ISourceable                           
+Entity                                 -[#595959,dashed]->  IWorriable                            
+Entity                                 -[#595959,dashed]->  Meaning                               
+Entity                                "1" *-[#595959,plain]-> "location\n1" Place                                 
+Entity                                "1" *-[#595959,plain]-> "inventory\n*" Thing                                 
+Entity                                 -[#595959,dashed]->  Time                                  
+Entity                                 -[#595959,dashed]->  UnknownLocation                       : "«create»"
+Event                                  -[#595959,dashed]->  Action                                
+Event                                  -[#595959,dashed]->  BasicActions                          
+Event                                  -[#595959,dashed]->  Entity                                
+Event                                  -[#595959,dashed]->  Event                                 
+Event                                  -[#595959,dashed]->  IActionable                           
+Event                                  -[#595959,dashed]->  ICanActionable                        
+Event                                  -[#595959,dashed]->  Place                                 
+Fish                                   -[#000082,plain]-^  Food                                  
+Floor                                  -[#000082,plain]-^  SinglePlace                           
+Floor                                  -[#595959,dashed]->  SuperPlace                            
+Flowers                                -[#595959,dashed]->  Flowers                               
+Flowers                                -[#000082,plain]-^  OpenPlace                             
+Flowers                                -[#595959,dashed]->  Place                                 
+Food                                   -[#008200,dashed]-^  ICanBeLayedOut                        
+Food                                   -[#008200,dashed]-^  ICanUniteable                         
+Food                                   -[#000082,plain]-^  Thing                                 
+Forest                                 -[#000082,plain]-^  OpenPlace                             
+FreakenSnork                           -[#000082,plain]-^  Entity                                
+FreakenSnork                           -[#595959,dashed]->  Place                                 
+Furniture                              -[#000082,plain]-^  SinglePlace                           
+Furniture                              -[#595959,dashed]->  SuperPlace                            
+Hall                                   -[#000082,plain]-^  IsolatedPlace                         
+HieghestTree                           -[#000082,plain]-^  Tree                                  
+Hive                                   -[#000082,plain]-^  Entity                                
+Hive                                   -[#008200,dashed]-^  IWhirlable                            
+Hive                                   -[#595959,dashed]->  Place                                 
+Homsa                                  -[#000082,plain]-^  Entity                                
+Homsa                                  -[#595959,dashed]->  Homsa                                 
+Homsa                                 "1" *-[#595959,plain]-> "eyes\n1" HomsaEyes                             
+Homsa                                  -[#595959,dashed]->  HomsaEyes                             : "«create»"
+Homsa                                  -[#595959,dashed]->  Place                                 
+Homsa                                  -[#595959,dashed]->  Size                                  
+HomsaEyes                              -[#595959,dashed]->  Buff                                  : "«create»"
+HomsaEyes                              -[#595959,dashed]->  Entity                                
+HomsaEyes                              +-[#820000,plain]-  Homsa                                 
+HomsaEyes                              -[#595959,dashed]->  HomsaEyes                             
+HomsaEyes                              -[#595959,dashed]->  Meaning                               
+HomsaEyes                             "1" *-[#595959,plain]-> "size\n1" Size                                  
+HomsaEyes                              -[#595959,dashed]->  Stat                                  
+House                                  -[#008200,dashed]-^  ICanUniteable                         
+House                                  -[#000082,plain]-^  IsolatedPlace                         
+Hower                                  -[#000082,plain]-^  SinglePlace                           
+Hower                                  -[#595959,dashed]->  SuperPlace                            
+IAttachable                            -[#595959,dashed]->  ICanUniteable                         
+IAttachable                            -[#595959,dashed]->  Unition                               
+ICanKnock                              -[#595959,dashed]->  IKnockable                            
+ICanLayDown                            -[#595959,dashed]->  Entity                                
+ICanLayDown                            -[#595959,dashed]->  ICanBeLayDownThing                    
+ICanLayDown                            -[#595959,dashed]->  Place                                 
+ICanLayDown                            -[#595959,dashed]->  Time                                  
+ICanLayOut                             -[#595959,dashed]->  ICanBeLayOutPlace                     
+ICanLayOut                             -[#595959,dashed]->  ICanBeLayedOut                        
+INoisable                              -[#595959,dashed]->  Meaning                               
+IRunnable                              -[#595959,dashed]->  Place                                 
+IRunnable                              -[#595959,dashed]->  Time                                  
+ISnortable                             -[#595959,dashed]->  Meaning                               
+IStealable                             -[#595959,dashed]->  Entity                                
+IStealable                             -[#595959,dashed]->  Thing                                 
+ISweepable                             -[#595959,dashed]->  Broom                                 
+IsolatedPlace                          -[#595959,dashed]->  ISmellable                            
+IsolatedPlace                          -[#595959,dashed]->  IsolatedPlace                         
+IsolatedPlace                          -[#595959,dashed]->  Place                                 
+IsolatedPlace                          -[#000082,plain]-^  SuperPlace                            
+IsolatedPlace                          -[#595959,dashed]->  Time                                  
+LayingOut                              -[#000082,plain]-^  Action                                
+LayingOut                              -[#595959,dashed]->  Entity                                
+LayingOut                             "1" *-[#595959,plain]-> "layOutPlace\n1" ICanBeLayOutPlace                     
+LayingOut                             "1" *-[#595959,plain]-> "layOutThing\n1" ICanBeLayedOut                        
+LayingOut                              -[#595959,dashed]->  ICanLayOut                            
+Lumber                                 -[#000082,plain]-^  IsolatedPlace                         
+Meaning                                -[#008200,dashed]-^  ISourceable                           
+Meaning                                -[#595959,dashed]->  Meaning                               
+MiddleOfDust                           -[#000082,plain]-^  OpenPlace                             
+Misa                                   -[#000082,plain]-^  Entity                                
+Misa                                   -[#008200,dashed]-^  INoisable                             
+Misa                                   -[#008200,dashed]-^  ISighable                             
+Misa                                   -[#008200,dashed]-^  IThinkable                            
+Misa                                   -[#595959,dashed]->  Meaning                               
+Miu                                    -[#000082,plain]-^  Entity                                
+Miu                                    -[#008200,dashed]-^  ILoudable                             
+Miu                                    -[#595959,dashed]->  Place                                 
+MiuTest                                -[#595959,dashed]->  BigScaryAnt                           : "«create»"
+MiuTest                                -[#595959,dashed]->  Hall                                  : "«create»"
+MiuTest                                -[#595959,dashed]->  Hower                                 : "«create»"
+MiuTest                                -[#595959,dashed]->  Miu                                   : "«create»"
+MiuTest                                -[#595959,dashed]->  Place                                 
+MiuTest                                -[#595959,dashed]->  SuperPlace                            
+MiuTest                                -[#595959,dashed]->  UnderCeiling                          : "«create»"
+MumiFather                             -[#000082,plain]-^  Entity                                
+MumiFather                             -[#008200,dashed]-^  IAttachable                           
+MumiFather                             -[#595959,dashed]->  ICanUniteable                         
+MumiFather                             -[#595959,dashed]->  Place                                 
+MumiFather                             -[#595959,dashed]->  Thing                                 
+MumiFather                             -[#595959,dashed]->  Unition                               : "«create»"
+MumiMother                             -[#000082,plain]-^  Entity                                
+MumiMother                             -[#595959,dashed]->  ICanBeLayDownThing                    
+MumiMother                             -[#595959,dashed]->  ICanBeLayOutPlace                     
+MumiMother                             -[#595959,dashed]->  ICanBeLayedOut                        
+MumiMother                             -[#008200,dashed]-^  ICanLayDown                           
+MumiMother                             -[#008200,dashed]-^  ICanLayOut                            
+MumiMother                             -[#595959,dashed]->  Place                                 
+MumiMother                             -[#595959,dashed]->  Time                                  
+MumiThroll                             -[#000082,plain]-^  Entity                                
+MumiThroll                             -[#008200,dashed]-^  IThinkable                            
+MumiThroll                             -[#008200,dashed]-^  IWhistlable                           
+MumiThroll                             -[#595959,dashed]->  Place                                 
+NearWater                              -[#000082,plain]-^  OpenPlace                             
+ObjectMethodsTest                      -[#595959,dashed]->  Berry                                 
+ObjectMethodsTest                      -[#595959,dashed]->  Hall                                  : "«create»"
+ObjectMethodsTest                      -[#595959,dashed]->  Place                                 
+ObjectMethodsTest                      -[#595959,dashed]->  Rope                                  : "«create»"
+ObjectMethodsTest                      -[#595959,dashed]->  Rowan                                 : "«create»"
+ObjectMethodsTest                      -[#595959,dashed]->  Thing                                 
+OpenPlace                              -[#000082,plain]-^  SuperPlace                            
+Pancake                                -[#000082,plain]-^  Food                                  
+Pantry                                 -[#000082,plain]-^  IsolatedPlace                         
+PaperPalma                             -[#000082,plain]-^  SinglePlace                           
+PaperPalma                             -[#595959,dashed]->  SuperPlace                            
+Place                                  -[#595959,dashed]->  Place                                 
+Plate                                  -[#008200,dashed]-^  ICanBeLayOutPlace                     
+Plate                                  -[#008200,dashed]-^  ICanUniteable                         
+Plate                                  -[#000082,plain]-^  Thing                                 
+PreparedCereal                         -[#000082,plain]-^  Food                                  
+PreparingDinnerTable                   -[#000082,plain]-^  Action                                
+PreparingDinnerTable                  "1" *-[#595959,plain]-> "table\n1" DinnerTable                           
+PreparingDinnerTable                   -[#595959,dashed]->  Entity                                
+PreparingDinnerTable                   -[#595959,dashed]->  Place                                 
+Program                                -[#595959,dashed]->  Action                                
+Program                                -[#595959,dashed]->  BasicActions                          
+Program                                -[#595959,dashed]->  BedSheet                              : "«create»"
+Program                                -[#595959,dashed]->  BigRowanTree                          : "«create»"
+Program                                -[#595959,dashed]->  BigScaryAnt                           : "«create»"
+Program                                -[#595959,dashed]->  Birds                                 : "«create»"
+Program                                -[#595959,dashed]->  Broom                                 : "«create»"
+Program                                -[#595959,dashed]->  Buff                                  : "«create»"
+Program                                -[#595959,dashed]->  Cheese                                : "«create»"
+Program                                -[#595959,dashed]->  DarkCorner                            : "«create»"
+Program                                -[#595959,dashed]->  DinnerTable                           : "«create»"
+Program                                -[#595959,dashed]->  Emma                                  : "«create»"
+Program                                -[#595959,dashed]->  EmmaCorner                            : "«create»"
+Program                                -[#595959,dashed]->  Entity                                
+Program                                -[#595959,dashed]->  Event                                 : "«create»"
+Program                                -[#595959,dashed]->  Fish                                  : "«create»"
+Program                                -[#595959,dashed]->  Floor                                 : "«create»"
+Program                                -[#595959,dashed]->  Flowers                               : "«create»"
+Program                                -[#595959,dashed]->  Food                                  
+Program                                -[#595959,dashed]->  Forest                                : "«create»"
+Program                                -[#595959,dashed]->  FreakenSnork                          : "«create»"
+Program                                -[#595959,dashed]->  Furniture                             : "«create»"
+Program                                -[#595959,dashed]->  Hall                                  : "«create»"
+Program                                -[#595959,dashed]->  HieghestTree                          : "«create»"
+Program                                -[#595959,dashed]->  Hive                                  : "«create»"
+Program                                -[#595959,dashed]->  Homsa                                 : "«create»"
+Program                                -[#595959,dashed]->  HomsaEyes                             
+Program                                -[#595959,dashed]->  House                                 : "«create»"
+Program                                -[#595959,dashed]->  Hower                                 : "«create»"
+Program                                -[#595959,dashed]->  ICanActionable                        
+Program                                -[#595959,dashed]->  ICanUniteable                         
+Program                                -[#595959,dashed]->  IDestroyable                          
+Program                                -[#595959,dashed]->  ISmellable                            
+Program                                -[#595959,dashed]->  IsolatedPlace                         
+Program                                -[#595959,dashed]->  LayingOut                             : "«create»"
+Program                                -[#595959,dashed]->  Lumber                                : "«create»"
+Program                                -[#595959,dashed]->  Meaning                               : "«create»"
+Program                                -[#595959,dashed]->  MiddleOfDust                          : "«create»"
+Program                                -[#595959,dashed]->  Misa                                  : "«create»"
+Program                                -[#595959,dashed]->  Miu                                   : "«create»"
+Program                                -[#595959,dashed]->  MumiFather                            : "«create»"
+Program                                -[#595959,dashed]->  MumiMother                            : "«create»"
+Program                                -[#595959,dashed]->  MumiThroll                            : "«create»"
+Program                                -[#595959,dashed]->  NearWater                             : "«create»"
+Program                                -[#595959,dashed]->  OpenPlace                             
+Program                                -[#595959,dashed]->  Pancake                               : "«create»"
+Program                                -[#595959,dashed]->  Pantry                                : "«create»"
+Program                                -[#595959,dashed]->  PaperPalma                            : "«create»"
+Program                                -[#595959,dashed]->  Place                                 
+Program                                -[#595959,dashed]->  Plate                                 : "«create»"
+Program                                -[#595959,dashed]->  PreparedCereal                        : "«create»"
+Program                                -[#595959,dashed]->  PreparingDinnerTable                  : "«create»"
+Program                                -[#595959,dashed]->  Program                               
+Program                                -[#595959,dashed]->  ResourceAccess                        
+Program                                -[#595959,dashed]->  Roof                                  : "«create»"
+Program                                -[#595959,dashed]->  Rope                                  : "«create»"
+Program                                -[#595959,dashed]->  Rowan                                 : "«create»"
+Program                                -[#595959,dashed]->  SinglePlace                           
+Program                                -[#595959,dashed]->  Size                                  
+Program                                -[#595959,dashed]->  Something                             : "«create»"
+Program                                -[#595959,dashed]->  Spiders                               : "«create»"
+Program                                -[#595959,dashed]->  Stat                                  
+Program                                -[#595959,dashed]->  Stick                                 : "«create»"
+Program                                -[#595959,dashed]->  Story                                 
+Program                                -[#595959,dashed]->  SugarStorage                          : "«create»"
+Program                                -[#595959,dashed]->  SuperPlace                            
+Program                                -[#595959,dashed]->  Theatre                               : "«create»"
+Program                                -[#595959,dashed]->  They                                  : "«create»"
+Program                                -[#595959,dashed]->  Thing                                 
+Program                                -[#595959,dashed]->  Time                                  
+Program                                -[#595959,dashed]->  Tree                                  
+Program                                -[#595959,dashed]->  Trunk                                 
+Program                                -[#595959,dashed]->  UnderCeiling                          : "«create»"
+Program                                -[#595959,dashed]->  Unition                               : "«create»"
+Program                                -[#595959,dashed]->  UnknownLocation                       : "«create»"
+Program                                -[#595959,dashed]->  UnknownMeaning                        : "«create»"
+ResourceAccess                         +-[#820000,plain]-  Program                               
+Roof                                   -[#000082,plain]-^  SinglePlace                           
+Roof                                   -[#595959,dashed]->  SuperPlace                            
+Rope                                   -[#008200,dashed]-^  ICanUniteable                         
+Rope                                   -[#000082,plain]-^  Thing                                 
+Rowan                                  -[#000082,plain]-^  Berry                                 
+SinglePlace                            -[#008200,dashed]-^  ILookable                             
+SinglePlace                            -[#000082,plain]-^  Place                                 
+SinglePlace                            -[#595959,dashed]->  SinglePlace                           
+SinglePlace                           "1" *-[#595959,plain]-> "location\n1" SuperPlace                            
+SinglePlace                            -[#595959,dashed]->  UnknownLocation                       : "«create»"
+Something                              -[#000082,plain]-^  Entity                                
+Something                              -[#008200,dashed]-^  ICanPeelOff                           
+Something                              -[#008200,dashed]-^  IShuffable                            
+Something                              -[#595959,dashed]->  Place                                 
+Something                              -[#595959,dashed]->  UnknownLocation                       : "«create»"
+Spiders                                -[#000082,plain]-^  Entity                                
+Stick                                  -[#008200,dashed]-^  ICanUniteable                         
+Stick                                  -[#000082,plain]-^  Thing                                 
+SugarStorage                           -[#008200,dashed]-^  IDestroyable                          
+SugarStorage                           -[#000082,plain]-^  Thing                                 
+SuperPlace                             -[#000082,plain]-^  Place                                 
+Table                                  -[#000082,plain]-^  SinglePlace                           
+Theatre                                -[#008200,dashed]-^  ICanActionable                        
+Theatre                                -[#000082,plain]-^  IsolatedPlace                         
+They                                   -[#595959,dashed]->  Buff                                  
+They                                   -[#000082,plain]-^  Entity                                
+They                                   -[#008200,dashed]-^  IAttachable                           
+They                                   -[#595959,dashed]->  ICanUniteable                         
+They                                   -[#008200,dashed]-^  IWorriable                            
+They                                   -[#595959,dashed]->  Place                                 
+They                                   -[#595959,dashed]->  Unition                               : "«create»"
+Thing                                  -[#595959,dashed]->  Entity                                
+Thing                                 "1" *-[#595959,plain]-> "location\n1" Place                                 
+Thing                                  -[#595959,dashed]->  Thing                                 
+Thing                                  -[#595959,dashed]->  UnknownLocation                       : "«create»"
+Tree                                   -[#595959,dashed]->  Crown                                 : "«create»"
+Tree                                  "1" *-[#595959,plain]-> "crown\n1" Crown                                 
+Tree                                   -[#000082,plain]-^  SinglePlace                           
+Tree                                   -[#595959,dashed]->  SuperPlace                            
+Tree                                   -[#595959,dashed]->  Tree                                  
+Tree                                   -[#595959,dashed]->  Trunk                                 : "«create»"
+Tree                                  "1" *-[#595959,plain]-> "trunk\n1" Trunk                                 
+Trunk                                  -[#595959,dashed]->  Place                                 
+Trunk                                  +-[#820000,plain]-  Tree                                  
+Trunk                                  -[#595959,dashed]->  TreeBrokenException                   : "«create»"
+Trunk                                  -[#595959,dashed]->  Trunk                                 
+UnderCeiling                           -[#000082,plain]-^  OpenPlace                             
+Unition                               "1" *-[#595959,plain]-> "uniteItems\n*" ICanUniteable                         
+Unition                                -[#000082,plain]-^  Thing                                 
+Unition                                -[#595959,dashed]->  Unition                               
+UnknownLocation                        -[#000082,plain]-^  SuperPlace                            
+UnknownMeaning                         -[#000082,plain]-^  Meaning                               
+@enduml
