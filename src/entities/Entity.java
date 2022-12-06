@@ -5,10 +5,9 @@ import entities.entityBuff.Buff;
 import entities.entityBuff.ISourceable;
 import entities.interfacesAnimateActions.IWorriable;
 import places.Place;
-import places.singlePlaces.SinglePlace;
+import places.singlePlaces.ILookable;
 import places.superPlaces.openPlaces.UnknownLocation;
 import story.Event;
-import places.singlePlaces.ILookable;
 import story.Time;
 import story.actions.ICanActionable;
 import things.Thing;
@@ -161,9 +160,8 @@ public abstract class Entity implements ICanActionable, ISourceable {
     }
 
     @Override
-    public int hashCode()
-    {
-        return Objects.hash(name, location);
+    public int hashCode() {
+        return Objects.hash(name, location, bufflist, angleRotate, inventory);
     }
 
     @Override
@@ -171,6 +169,9 @@ public abstract class Entity implements ICanActionable, ISourceable {
         return this.getClass().getName() + "["
                 + "name=" + this.name
                 + ",location=" + this.location
-                + ",bufflist=" + this.bufflist + "]";
+                + ",bufflist=" + this.bufflist
+                + ",angleRotate=" + this.angleRotate
+                + ",inventory=" + this.inventory
+                + "]";
     }
 }

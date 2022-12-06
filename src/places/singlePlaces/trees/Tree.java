@@ -5,6 +5,8 @@ import places.singlePlaces.ILookable;
 import places.singlePlaces.SinglePlace;
 import places.superPlaces.SuperPlace;
 
+import java.util.Objects;
+
 public class Tree extends SinglePlace {
 
     private final Trunk trunk;
@@ -70,13 +72,72 @@ public class Tree extends SinglePlace {
                 throw new TreeBrokenException("ДЕРЕВО НЕ ВЫДЕРЖАЛО НАКЛОНА И СЛОМАЛОСЬ :(");
             }
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Trunk trunk = (Trunk) o;
+            return height == trunk.height && angleRotate == trunk.angleRotate;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(height, angleRotate);
+        }
     }
 
     public class Crown implements ILookable
     {
+        private String name;
+
+        public Crown()
+        {
+            name = "крона дерева " + Tree.this.getName();
+        }
         @Override
         public String getName() {
-            return "крона дерева " + Tree.this.getName();
+            return name;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Crown crown = (Crown) o;
+            return Objects.equals(name, crown.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name);
+        }
+
+        @Override
+        public String toString() {
+            return getClass().getName() + "[" +
+                    "name=" + name  +
+                    ']';
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        Tree tree = (Tree) o;
+        return Objects.equals(trunk, tree.trunk) && Objects.equals(crown, tree.crown);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), trunk, crown);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "[" +
+                "trunk=" + trunk +
+                ",crown=" + crown +
+                ']';
     }
 }

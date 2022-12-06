@@ -118,7 +118,7 @@ public class Program {
         Action action = new PreparingDinnerTable(dinnerTable, father);
         They they = new They("они");
         they.lookFor(action.getEvent());
-        Story.FreezeStory();
+        Story.FreezeStory(500);
         action.invokeAction();
 
         // Миса вспомнила чудесные локоны и вздохнула.

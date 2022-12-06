@@ -8,5 +8,8 @@ public enum Stat {
     SAD,
     WORRY,
     SHINING,
-    PRIDE, ANGER, CONFUSE, LAUGH
+    PRIDE,
+    ANGER,
+    CONFUSE,
+    LAUGH
 }
