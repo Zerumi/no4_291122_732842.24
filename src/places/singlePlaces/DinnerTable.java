@@ -1,7 +1,7 @@
 package places.singlePlaces;
 
 import entities.Entity;
-import exceptions.chechedExceptions.DinnerTableIsAlreadyPreparedException;
+import exceptions.chechedExceptions.TableIsAlreadyPreparedException;
 
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ public class DinnerTable extends Table {
         try {
             if (isPrepared())
             {
-                throw new DinnerTableIsAlreadyPreparedException("Стол уже приготовлен для трапезы!");
+                throw new TableIsAlreadyPreparedException("Стол уже приготовлен для трапезы!");
             }
         }
         catch (Exception ex)

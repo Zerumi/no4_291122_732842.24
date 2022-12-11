@@ -54,6 +54,10 @@
  * В лесу выл какой-то незнакомый зверь.
  */
 
+// Доп. задание: Рефлексия.
+
+import argCommands.Command;
+import argCommands.Commands;
 import entities.*;
 import entities.emotionMeanings.Meaning;
 import entities.emotionMeanings.UnknownMeaning;
@@ -79,7 +83,11 @@ import things.unitions.ICanUniteable;
 import things.unitions.Unition;
 
 import java.awt.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 
 
 // Согласованная объектная модель:
@@ -106,6 +114,28 @@ import java.io.*;
  */
 public class Program {
     public static void main(String[] args) {
+
+        System.out.println("Welcome to the Mumi-throll story. You are in the commandline console manager: story setup mode.");
+        System.out.println("Use \"help\" for get list of supported commands");
+        while (Command.getCommangManagerRunning()) {
+            try {
+                if (args.length > 0) {
+                    Commands.Parser.parseWithArguments(args).invokeCommand();
+                }
+                String[] commandArgs;
+                Scanner scanner = new Scanner(System.in);
+                commandArgs = scanner.nextLine().split(" ");
+                Commands.Parser.parseWithArguments(commandArgs).invokeCommand();
+            }
+            catch (IllegalArgumentException ex)
+            {
+                System.out.println("COMMAND NOT FOUND! " + ex.getMessage());
+            }
+            catch (NullPointerException ex)
+            {
+                System.out.println("Exception: " + ex.getMessage());
+            }
+        }
 
         // Миса издала звук, который мог означать что угодно.
         Misa misa = new Misa("Миса");
@@ -209,6 +239,7 @@ public class Program {
         Buff emmaBuff;
         if (emma.tryStealItem(homsa, unluckyfish))
         {
+
             emmaBuff = new Buff(Stat.PRIDE, () -> "Украденная вещь");
         }
         else
@@ -269,7 +300,7 @@ public class Program {
         // Они привязали дом к большой рябине.
         ICanUniteable house = new House("дом");
         ICanUniteable bigRowanTree = new BigRowanTree("большое дерево рябины");
-        Unition u1 = they.attach(house, bigRowanTree);
+        Unition houserowtreeUnition = they.attach(house, bigRowanTree);
 
         // Муми-папа прикрепил канат к своей палке, а палку воткнул прямо в крышу чулана.
         Rope rope = new Rope("канат");
