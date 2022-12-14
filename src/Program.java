@@ -115,6 +115,98 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
 
+        // Setup story objects
+        System.out.println("Setting up story objects...");
+
+        Misa misa = new Misa("Миса");
+        Meaning unknownMeaning = new UnknownMeaning("какое-то означающее", "что угодно");
+
+        MumiFather father = new MumiFather("Муми-папа");
+        DinnerTable dinnerTable = new DinnerTable("обеденный стол");
+        Action action = new PreparingDinnerTable(dinnerTable, father);
+        They they = new They("они");
+
+        Buff buff = new Buff(Stat.EXHAUSTED, new Meaning("воспоминание", "воспоминание о чудесных локонах"));
+
+        SuperPlace middleOfDust = new MiddleOfDust("среди пыльного хлама");
+        SinglePlace paperPalma = new PaperPalma("за бумажной пальмой", middleOfDust);
+        FreakenSnork snork = new FreakenSnork("фрекен Снорк");
+        Homsa homsa = new Homsa("Хомса", paperPalma);
+        Thing sugarStorage = new SugarStorage("сахарница");
+
+        Hall hall = new Hall("зал");
+        MumiMother mom = new MumiMother("Муми-мама", hall);
+        Food preparedCereal = new PreparedCereal("готовая каша");
+        Plate plate = new Plate("тарелка");
+        SinglePlace furnitureInHall = new Furniture("гостиный гарнитур", hall);
+        Meaning despite = new Meaning("презрение", "презрительное рассмотрение");
+        Action momLayOutPlates = new LayingOut<>(mom, preparedCereal, plate);
+
+        Unition plateWithCereal = new Unition(plate, preparedCereal);
+        Floor floor = new Floor("пол под пальмой", middleOfDust);
+
+        Buff homsalaugh = new Buff(Stat.LAUGH, homsa);
+
+        DarkCorner corner = new DarkCorner("темный угол");
+        Something something = new Something("что-то", corner);
+
+        Floor floorInHall = new Floor("пол в гостиной", hall);
+        Meaning enemier = new Meaning("враждебно", "враждебный взгляд");
+
+        Emma emma = new Emma("Эмма");
+        Cheese cheese = new Cheese("сыр");
+
+        Pancake pancake = new Pancake("блинчик");
+
+        Pantry pantry = new Pantry("кладовка");
+
+        EmmaCorner emmaCorner = new EmmaCorner("уголок Эммы");
+        Fish unluckyFish = new Fish("несчастная рыбка, которую скоро попытаются украсть... :(");
+
+        Meaning findingBroom = new Meaning("шум", "поиск метлы");
+        Broom broom = new Broom("большая метла");
+
+        ISmellable berry = new Rowan("рябина", "острый", true);
+
+        OpenPlace underCeiling = new UnderCeiling("под самым потолком");
+        Birds birds = new Birds("птчики");
+        Spiders spiders = new Spiders("паучки");
+
+        Place hower = new Hower("ковер в зале", hall);
+        Miu miu = new Miu("малышка Мю", hower);
+        BigScaryAnt ant = new BigScaryAnt("большой страшный муравейка", hower);
+
+        ICanActionable theatre = new Theatre("театр");
+        Place forest = new Forest("лес");
+        Event theatreSwimming = new Event(BasicActions.SWIMMING, theatre, forest);
+        Buff fear = new Buff(Stat.FEAR, emma);
+
+        Place nearWater = new NearWater("около воды");
+
+        ICanUniteable house = new House("дом");
+        ICanUniteable bigRowanTree = new BigRowanTree("большое дерево рябины");
+
+        Rope rope = new Rope("канат");
+        Stick stick = new Stick("палка");
+
+        Lumber lumber = new Lumber("чулан");
+        Roof roofOfLumber = new Roof("крыша чулана", lumber);
+
+        Meaning silenceMeaning = new Meaning("молча", "молчаливое означающее");
+
+        MumiThroll mumiThroll = new MumiThroll("Муми-тролль");
+        HieghestTree hieghestTree = new HieghestTree("высоченное дерево");
+
+        Flowers flowers = new Flowers("цветы", Color.WHITE);
+        Hive hive = new Hive("рой пчел", flowers);
+
+        Meaning confuseMeaning = new Meaning("растерянность", "растерянный взгляд");
+
+        BedSheet bedSheet = new BedSheet("постельное белье");
+
+        System.out.println("Object creating part ended");
+
+        // Start command manager
         System.out.println("Welcome to the Mumi-throll story. You are in the commandline console manager: story setup mode.");
         System.out.println("Use \"help\" for get list of supported commands");
         while (Command.getCommangManagerRunning()) {
@@ -136,32 +228,21 @@ public class Program {
                 System.out.println("Exception: " + ex.getMessage());
             }
         }
+        // run the story
 
         // Миса издала звук, который мог означать что угодно.
-        Misa misa = new Misa("Миса");
-        Meaning meaning = new UnknownMeaning("какое-то означающее", "что угодно");
-        misa.noise(meaning);
+        misa.noise(unknownMeaning);
 
         // Потом они помолчали, наблюдая, как Муми-мама накрывает на стол к обеду. (прим ред. к ужину)
-        MumiFather father = new MumiFather("Муми-папа");
-        DinnerTable dinnerTable = new DinnerTable("обеденный стол");
-        Action action = new PreparingDinnerTable(dinnerTable, father);
-        They they = new They("они");
         they.lookFor(action.getEvent());
         Story.FreezeStory(500);
         action.invokeAction();
 
         // Миса вспомнила чудесные локоны и вздохнула.
-        Buff buff = new Buff(Stat.EXHAUSTED, new Meaning("воспоминание", "воспоминание о чудесных локонах"));
         misa.addBuff(buff);
         misa.sigh();
 
         // А за спиной Мисы и фрекен Снорк, среди пыльного хлама, за бумажной пальмой поблескивали внимательные и блестящие маленькие глазки.
-        SuperPlace middleOfDust = new MiddleOfDust("среди пыльного хлама");
-        SinglePlace paperPalma = new PaperPalma("за бумажной пальмой", middleOfDust);
-        FreakenSnork snork = new FreakenSnork("фрекен Снорк");
-        Homsa homsa = new Homsa("Хомса", paperPalma);
-        Thing sugarStorage = new SugarStorage("сахарница");
         homsa.addItemToInventory(sugarStorage);
         snork.setLocation(middleOfDust);
         misa.setLocation(middleOfDust);
@@ -169,26 +250,16 @@ public class Program {
         homsa.getHomsaEyes().shine();
 
         // Глазки презрительно разглядывали Мису и фрекен Снорк, а потом, скользнув по гостиному гарнитуру, остановились на маме, которая раскладывала по тарелкам кашу.
-        Hall hall = new Hall("зал");
-        MumiMother mom = new MumiMother("Муми-мама", hall);
-        Food preparedCereal = new PreparedCereal("готовая каша");
-        Plate plate = new Plate("тарелка");
-        SinglePlace furnitureInHall = new Furniture("гостиный гарнитур", hall);
-        Meaning despite = new Meaning("презрение", "презрительное рассмотрение");
         homsa.getHomsaEyes().examine(misa, despite);
         homsa.getHomsaEyes().examine(snork, despite);
         homsa.lookOn(furnitureInHall);
-        Action momLayOutPlates = new LayingOut<>(mom, preparedCereal, plate);
         homsa.lookFor(momLayOutPlates.getEvent());
 
         // Глазки еще больше потемнели, а мордочка насмешливо сморщилась.
-        Buff homsalaugh = new Buff(Stat.LAUGH, homsa);
         homsa.getHomsaEyes().darker();
         homsa.addBuff(homsalaugh);
 
         // Взяв тарелку с кашей, она поставила ее на пол под пальму.
-        Unition plateWithCereal = new Unition(plate, preparedCereal);
-        Floor floor = new Floor("пол под пальмой", middleOfDust);
         plateWithCereal.setLocation(mom, floor);
 
         // Все бросились к столу и уселись вокруг.
@@ -203,41 +274,31 @@ public class Program {
         they.lookOn(floor);
 
         // Какая-то тень отделилась от стены в темном углу.
-        DarkCorner corner = new DarkCorner("темный угол");
-        Something something = new Something("что-то", corner);
         something.peelOff();
 
         // Что-то серое и сморщенное прошаркало по полу гостиной, заморгало от солнечного света и затрясло седыми усами, враждебно оглядывая семью муми-троллей.
-        Floor floorInHall = new Floor("пол в гостиной", hall);
-        Meaning enemier = new Meaning("враждебно", "враждебный взгляд");
         something.setLocation(floorInHall);
         something.shuffle();
         something.lookOn(mom, enemier);
         something.lookOn(father, enemier);
 
         // Эмма не ответила, она смотрела на сыр...
-        Emma emma = new Emma("Эмма");
-        Cheese cheese = new Cheese("сыр");
         emma.lookOn(cheese);
 
         // Потом схватила ломтик сыра и сунула его в карман.
         emma.addItemToInventory(cheese.getPiece());
 
         // Ее взгляд блуждал по столу и остановился на блинчике.
-        Pancake pancake = new Pancake("блинчик");
         emma.lookOn(dinnerTable);
         emma.lookOn(pancake);
 
         // Хомса умчался в кладовку.
-        Pantry pantry = new Pantry("кладовка");
         homsa.setLocation(pantry);
 
         // Эмма так и выхватила у него рыбку из лапы и с высоко поднятой головой прошаркала в свой угол.
-        EmmaCorner emmaCorner = new EmmaCorner("уголок Эммы");
-        Fish unluckyfish = new Fish("несчастная рыбка, которую скоро попытаются украсть... :(");
-        homsa.addItemToInventory(unluckyfish);
+        homsa.addItemToInventory(unluckyFish);
         Buff emmaBuff;
-        if (emma.tryStealItem(homsa, unluckyfish))
+        if (emma.tryStealItem(homsa, unluckyFish))
         {
 
             emmaBuff = new Buff(Stat.PRIDE, () -> "Украденная вещь");
@@ -251,37 +312,24 @@ public class Program {
         emma.shuffle();
 
         // Она долго гремела там и, вытащив наконец большую метлу, принялась усердно мести.
-        Meaning findingBroom = new Meaning("шум", "поиск метлы");
         emma.noise(findingBroom);
-        Broom broom = new Broom("большая метла");
         emma.sweep(broom);
 
         // --- Start of 3rd lab work ---
 
         // Вечером острый запах цветущей рябины заполнил зал.
-        ISmellable berry = new Rowan("рябина", "острый", true);
         hall.fillSmell(Time.EVENING, berry);
 
         // Птички порхали под самым потолком, охотясь за пауками
-        OpenPlace underCeiling = new UnderCeiling("под самым потолком");
-        Birds birds = new Birds("птчики");
-        Spiders spiders = new Spiders("паучки");
         birds.setLocation(underCeiling);
         spiders.setLocation(underCeiling);
         birds.flutter();
         birds.hunt(spiders);
 
         // А малышка Мю повстречала на ковре в зале большого страшного муравья.
-        Place hower = new Hower("ковер в зале", hall);
-        Miu miu = new Miu("малышка Мю", hower);
-        BigScaryAnt ant = new BigScaryAnt("большой страшный муравейка", hower);
         miu.meet(ant);
 
         // Только теперь все заметили, что театр плыл уже в лесу.
-        ICanActionable theatre = new Theatre("театр");
-        Place forest = new Forest("лес");
-        Event theatreSwimming = new Event(BasicActions.SWIMMING, theatre, forest);
-        Buff fear = new Buff(Stat.FEAR, emma);
         they.setLocation(forest);
         they.addBuff(fear);
         they.lockAttention(Time.ONLY_RIGHT_NOW, theatreSwimming);
@@ -291,29 +339,21 @@ public class Program {
 
         // Забыв свой страх перед Эммой, они сгрудились у самой воды, разговаривая и размахивая лапами.
         they.removeBuff(fear);
-        Place nearWater = new NearWater("около воды");
         they.setLocation(nearWater);
         they.huddle();
         they.talk();
         they.wave();
 
         // Они привязали дом к большой рябине.
-        ICanUniteable house = new House("дом");
-        ICanUniteable bigRowanTree = new BigRowanTree("большое дерево рябины");
-        Unition houserowtreeUnition = they.attach(house, bigRowanTree);
+        they.attach(house, bigRowanTree);
 
         // Муми-папа прикрепил канат к своей палке, а палку воткнул прямо в крышу чулана.
-        Rope rope = new Rope("канат");
-        Stick stick = new Stick("палка");
         Unition u2 = father.attach(rope, stick);
-        Lumber lumber = new Lumber("чулан");
-        Roof roofOfLumber = new Roof("крыша чулана", lumber);
         father.stick(u2, roofOfLumber);
 
         // --- End of 3rd lab work ---
 
         // Эмма молча уставилась на него.
-        Meaning silenceMeaning = new Meaning("молча", "молчаливое означающее");
         emma.lookOn(father, silenceMeaning);
 
         // Покачав головой, она пожала плечами, презрительно фыркнула и снова принялась мести пол.
@@ -323,14 +363,10 @@ public class Program {
         emma.sweep(broom);
 
         // Муми-тролль стоял, разглядывая высоченное дерево.
-        MumiThroll mumiThroll = new MumiThroll("Муми-тролль");
-        HieghestTree hieghestTree = new HieghestTree("высоченное дерево");
         mumiThroll.lookOn(hieghestTree);
 
         // Рои пчел и ос кружились вокруг белых цветов, а ствол красиво изогнулся, образовав вместе с веткой колыбельку, вполне пригодную для какого-нибудь малютки.
         final int BEAUTIFUL_ROTATION_ANGLE = 30;
-        Flowers flowers = new Flowers("цветы", Color.WHITE);
-        Hive hive = new Hive("рой пчел", flowers);
         hive.whirl();
         try {
             hieghestTree.getTrunk().curve(BEAUTIFUL_ROTATION_ANGLE);
@@ -361,7 +397,6 @@ public class Program {
         emma.setLocation(new UnknownLocation("неизвестное миру сему место"));
 
         // Они в растерянности смотрели ей вслед, и на какое-то мгновение семейству муми-троллей стало не по себе.
-        Meaning confuseMeaning = new Meaning("растерянность", "растерянный взгляд");
         Buff theyConfuse = new Buff(Stat.CONFUSE, emma);
         they.addBuff(theyConfuse);
         they.lookOn(emma, confuseMeaning);
@@ -371,7 +406,6 @@ public class Program {
         they.removeBuff(theyConfuse);
 
         // Вечером мама постелила Муми-троллю и фрекен Снорк на дереве.
-        BedSheet bedSheet = new BedSheet("постельное белье");
         mom.layDown(bedSheet, hieghestTree, Time.EVENING, mumiThroll, snork);
 
         // Миса тоже взглянула на дерево.
@@ -397,8 +431,7 @@ public class Program {
         private static String readFromInputStream(InputStream inputStream)
                 throws IOException {
             StringBuilder resultStringBuilder = new StringBuilder();
-            try (BufferedReader br
-                         = new BufferedReader(new InputStreamReader(inputStream))) {
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     resultStringBuilder.append(line).append("\n");

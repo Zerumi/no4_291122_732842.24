@@ -1,5 +1,7 @@
 package argCommands;
 
+import java.util.ArrayList;
+
 public class ExitCommand extends Command {
 
     private static Command singleToneMoment;
@@ -7,6 +9,13 @@ public class ExitCommand extends Command {
     public static final String COMMAND_NAME = "exit";
 
     public static final String COMMAND_DESCRIPTION = "Exits from command manager & runs the story";
+
+    public static final String COMMAND_USAGE = "exit";
+
+    public static final ArrayList<String> COMMAND_PARAMS = new ArrayList<>()
+    {{
+        add("No params attached with this command.");
+    }};
 
     private ExitCommand() {
 
@@ -28,6 +37,16 @@ public class ExitCommand extends Command {
     @Override
     public String getDescription() {
         return COMMAND_DESCRIPTION;
+    }
+
+    @Override
+    public String getUsage() {
+        return COMMAND_USAGE;
+    }
+
+    @Override
+    public ArrayList<String> getParams() {
+        return COMMAND_PARAMS;
     }
 
     @Override
