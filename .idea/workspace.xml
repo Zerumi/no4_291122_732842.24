@@ -6,29 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="076bf813-87cb-4ac9-a9e0-f93221fc88f6" name="Changes" comment="add report">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/heap.hprof" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/CommandFlag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/ICommandFlags.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/ICommandFlagsEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/charactersFlags/StoryCharacterFlag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/charactersFlags/createCharacterFlags/AddCharacterCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/charactersFlags/getCharacterListFlags/GetCharactersCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/objectsFlags/StoryObjectsFlag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/objectsFlags/getObjectFlags/GetObjectsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/objectsFlags/infoObjectFlags/InfoObjectCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/objectsFlags/treeObjectFlags/TreeObjectsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/argCommands/StoryCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entities/Viewer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/HashMapTest.java" afterDir="false" />
+    <list default="true" id="076bf813-87cb-4ac9-a9e0-f93221fc88f6" name="Changes" comment="command manager: objects &amp; characters commands support added">
+      <change afterPath="$PROJECT_DIR$/src/story/actions/RPCTournament.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/story/actions/RockPaperScissors.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/no4_291122_732842.24.iml" beforeDir="false" afterPath="$PROJECT_DIR$/no4_291122_732842.24.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/argCommands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/argCommands/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/argCommands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/argCommands/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/argCommands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/argCommands/ExitCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/argCommands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/argCommands/HelpCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +131,8 @@
       <workItem from="1670776615699" duration="15568000" />
       <workItem from="1670851120176" duration="51160000" />
       <workItem from="1670971576993" duration="5000" />
-      <workItem from="1670978017428" duration="810000" />
+      <workItem from="1670978017428" duration="1094000" />
+      <workItem from="1671016446267" duration="1941000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1666217231948</created>
@@ -242,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670366412145</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="command manager: objects &amp; characters commands support added">
+      <created>1670978985581</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1670978985581</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +264,8 @@
     <MESSAGE value="Static inner class added + release" />
     <MESSAGE value="add diagrams" />
     <MESSAGE value="add report" />
-    <option name="LAST_COMMIT_MESSAGE" value="add report" />
+    <MESSAGE value="command manager: objects &amp; characters commands support added" />
+    <option name="LAST_COMMIT_MESSAGE" value="command manager: objects &amp; characters commands support added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -283,11 +274,6 @@
           <url>file://$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/charactersFlags/createCharacterFlags/AddCharacterCommand.java</url>
           <line>96</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/argCommands/CommandFlags/storyFlags/charactersFlags/createCharacterFlags/AddCharacterCommand.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -57,6 +57,7 @@
 // Доп. задание: Рефлексия.
 
 import argCommands.Command;
+import argCommands.CommandFlags.storyFlags.charactersFlags.StoryCharacterFlag;
 import argCommands.Commands;
 import entities.*;
 import entities.emotionMeanings.Meaning;
@@ -228,7 +229,9 @@ public class Program {
                 System.out.println("Exception: " + ex.getMessage());
             }
         }
-        // run the story
+        // run the story. Rpc tournament
+        RPCTournament tournament = new RPCTournament(StoryCharacterFlag.getCurrentCharacters().toArray(new Entity[]{}));
+        tournament.invokeAction();
 
         // Миса издала звук, который мог означать что угодно.
         misa.noise(unknownMeaning);
